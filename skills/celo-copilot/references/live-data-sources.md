@@ -1,0 +1,196 @@
+# Live Data Sources
+
+Instead of relying on hardcoded snapshots, use these APIs and endpoints to fetch real-time data. **Always prefer live data over hardcoded reference files** for TVL, prices, protocol status, and grant programs.
+
+Hardcoded references (contracts.md, network-info.md) should still be trusted for contract addresses and chain configuration — those rarely change.
+
+---
+
+## 1. DeFi TVL & Protocol Data (DefiLlama)
+
+### Get all protocols on Celo with TVL
+
+```bash
+curl -s https://api.llama.fi/protocols | jq '[.[] | select(.chains[]? == "Celo")] | sort_by(-.tvl) | .[] | {name, tvl, category, slug}'
+```
+
+### Get total Celo chain TVL
+
+```bash
+curl -s https://api.llama.fi/v2/chains | jq '.[] | select(.name == "Celo") | {name, tvl}'
+```
+
+### Get specific protocol TVL on Celo
+
+```bash
+# Replace "aave-v3" with protocol slug
+curl -s https://api.llama.fi/protocol/aave-v3 | jq '.chainTvls.Celo'
+```
+
+### Common protocol slugs on Celo
+- `aave-v3` — Lending
+- `uniswap` — DEX (V3)
+- `morpho` — Lending
+- `curve-dex` — DEX
+- `mento` — Stablecoins
+- `beefy` — Yield aggregator
+
+**When to use**: Any question about TVL, yield, protocol size, or "what's the biggest X on Celo?"
+
+---
+
+## 2. Grant Programs (celopg.eco)
+
+### Fetch current programs
+
+```bash
+curl -s https://www.celopg.eco/programs
+```
+
+The page lists all programs with status badges (Live/Past), dates, hosts, and funding amounts. Parse the HTML to get current state.
+
+**When to use**: Any question about grants, funding, or "what programs can I apply to?"
+
+**Key fields to look for**: Status (Live vs Past), funding amount, date range, host organization.
+
+---
+
+## 3. Ecosystem Products (The Grid — GraphQL)
+
+See `the-grid-skill.md` for complete query templates. The Grid is the primary live source for ecosystem intelligence.
+
+**Endpoint**: `https://beta.node.thegrid.id/graphql`
+**Auth**: None required
+
+### Quick: Products deployed on Celo
+
+```bash
+curl -s -X POST https://beta.node.thegrid.id/graphql \
+  -H "Content-Type: application/json" \
+  -d '{"query": "{ products(where: { productDeployments: { smartContractDeployment: { deployedOnProduct: { name: { _ilike: \"%celo%\" } } } }, productStatus: { slug: { _eq: \"live\" } } }, order_by: { root: { gridRank: { score: desc_nulls_last } } }, limit: 25) { name productType { slug name } root { slug urlMain } } }" }' | jq .
+```
+
+**When to use**: Competitive analysis, "what exists on Celo?", vertical saturation.
+
+---
+
+## 4. On-Chain Data (RPC)
+
+### Get current block number
+
+```bash
+curl -s -X POST https://forno.celo.org \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}' | jq -r '.result' | xargs printf "%d\n"
+```
+
+### Get CELO balance of an address
+
+```bash
+curl -s -X POST https://forno.celo.org \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","method":"eth_getBalance","params":["ADDRESS_HERE","latest"],"id":1}' | jq -r '.result'
+```
+
+### Get ERC-20 token balance (e.g., USDm/cUSD)
+
+```bash
+# balanceOf(address) selector: 0x70a08231
+# Pad address to 32 bytes
+curl -s -X POST https://forno.celo.org \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","method":"eth_call","params":[{"to":"0x765DE816845861e75A25fCA122bb6898B8B1282a","data":"0x70a08231000000000000000000000000ADDRESS_WITHOUT_0x"},"latest"],"id":1}' | jq -r '.result'
+```
+
+### Get current gas price
+
+```bash
+curl -s -X POST https://forno.celo.org \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","method":"eth_gasPrice","params":[],"id":1}' | jq -r '.result'
+```
+
+### Check if a contract exists at an address
+
+```bash
+curl -s -X POST https://forno.celo.org \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","method":"eth_getCode","params":["CONTRACT_ADDRESS","latest"],"id":1}' | jq -r '.result | length'
+```
+
+**When to use**: Verifying addresses, checking balances, confirming contract deployments.
+
+---
+
+## 5. Celo Documentation (llms.txt)
+
+### Fetch the latest docs sitemap
+
+```bash
+curl -s https://docs.celo.org/llms.txt
+```
+
+Returns a structured list of all documentation pages. Use this to find the right docs page for any topic instead of relying on the hardcoded `docs-map.md`.
+
+**When to use**: Finding docs pages, especially if the user asks about something that might have new documentation.
+
+---
+
+## 6. Celoscan API (Block Explorer)
+
+### Get contract ABI (verified contracts only)
+
+```bash
+curl -s "https://api.celoscan.io/api?module=contract&action=getabi&address=CONTRACT_ADDRESS&apikey=API_KEY"
+```
+
+### Get token info
+
+```bash
+curl -s "https://api.celoscan.io/api?module=token&action=tokeninfo&contractaddress=TOKEN_ADDRESS&apikey=API_KEY"
+```
+
+### Get transaction list for address
+
+```bash
+curl -s "https://api.celoscan.io/api?module=account&action=txlist&address=ADDRESS&startblock=0&endblock=99999999&sort=desc&apikey=API_KEY"
+```
+
+**Note**: Celoscan API requires an API key from https://celoscan.io/myapikey. Some endpoints work without a key but are rate-limited.
+
+---
+
+## 7. Blockscout API (Alternative Explorer)
+
+### Get contract info (no API key needed)
+
+```bash
+curl -s "https://celo.blockscout.com/api/v2/addresses/CONTRACT_ADDRESS"
+```
+
+### Get token info
+
+```bash
+curl -s "https://celo.blockscout.com/api/v2/tokens/TOKEN_ADDRESS"
+```
+
+### Get address token balances
+
+```bash
+curl -s "https://celo.blockscout.com/api/v2/addresses/ADDRESS/token-balances"
+```
+
+**When to use**: Quick contract/token lookups without needing an API key.
+
+---
+
+## Priority Order for Data Sources
+
+When answering questions, prefer data sources in this order:
+
+1. **Live API** (DefiLlama, The Grid, RPC, celopg.eco) — most current
+2. **Official docs** (docs.celo.org/llms.txt) — authoritative for technical info
+3. **Hardcoded references** (contracts.md, network-info.md) — stable, verified data
+4. **Ecosystem directory** (ecosystem.md) — curated snapshot, may be stale
+
+Always tell the user when you're using hardcoded data vs live data, and suggest they verify with the live source if the data might be stale.
