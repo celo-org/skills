@@ -78,11 +78,12 @@ await governance.vote(proposalId, "Yes").send({ from: voterAddress });
 
 ## Security Council
 
-The Security Council is a multisig that can execute emergency actions to protect the protocol.
+The Celo L2 Security Council manages protocol upgrades and emergency fixes since the L2 transition (block 31,056,500, March 26, 2025).
 
-- Can pause/unpause contracts in emergencies
-- Can approve governance proposals
-- Members are elected by CELO holders
+- **Structure**: 2/2 Safe Multisig requiring both a cLabs Multisig (6/8 threshold) and a Community Security Council (6/8 threshold)
+- **Community members**: L2Beat, Hyperlane, Valora, Mento, Nitya Subramanian, Kris Kaczor, Tim Moreton, Aaron Boyd
+- **Responsibilities**: Upgrading L1 protocol contracts, modifying role designations (sequencers, proposers, challengers), executing urgent security hotfixes
+- **Note**: Regular governance for Core Contracts and Community Fund remains unchanged and is separate from the Security Council
 - Details: https://docs.celo.org/home/protocol/security-council
 
 ---
@@ -92,7 +93,7 @@ The Security Council is a multisig that can execute emergency actions to protect
 On Celo L2, epoch rewards are distributed for:
 - **Validator rewards** — Block production compensation
 - **Community fund** — Treasury for ecosystem development
-- **Carbon offsetting** — 20% of transaction fees go to carbon offset fund (3,845+ tons CO2 offset)
+- **Carbon offsetting** — 10% of transaction fees + 0.1% of epoch rewards go to carbon offset fund
 
 Docs: https://docs.celo.org/home/protocol/epoch-rewards/index
 
