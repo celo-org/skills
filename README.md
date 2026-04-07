@@ -34,7 +34,7 @@ On-chain governance reference: proposal lifecycle, voting with Mondo/CeloCLI, Se
 150+ verified addresses from docs.celo.org — core protocol, 15+ Mento stablecoins, L1 bridge contracts, Uniswap V3/V4, Aave V3, Morpho Blue, and testnet deployments.
 
 ### Grant Matchmaking
-12+ active funding programs with a matchmaking guide. Find the right grant based on what you're building.
+20+ grant programs tracked (3 live, 17 past) with a matchmaking guide. Find the right grant based on what you're building.
 
 ## Usage
 
@@ -69,8 +69,9 @@ skills/celo-copilot/
     contracts.md                    # 150+ verified contract addresses
     ecosystem.md                    # 30+ DeFi protocols, infra, MiniPay apps
     the-grid-skill.md               # 9 GraphQL query templates for The Grid
-    grants-funding.md               # 12+ active funding programs
+    grants-funding.md               # 20+ grant programs (3 live, 17 past)
     docs-map.md                     # Full docs.celo.org sitemap (~150 pages)
+    live-data-sources.md            # DefiLlama, celopg.eco, RPC, Blockscout APIs
     # Phase 2: Builder Assistant
     builder-guide.md                # Celo-specific dev patterns and gotchas
     dev-templates.md                # Foundry, Hardhat, Viem, Wagmi configs
