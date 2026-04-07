@@ -11,26 +11,23 @@
 
 | Protocol | Description | Website |
 |----------|-------------|---------|
-| Uniswap V3 | Concentrated liquidity AMM | https://app.uniswap.org |
+| Uniswap V3 | Concentrated liquidity AMM (~$5.2M TVL) | https://app.uniswap.org |
 | Uniswap V4 | Next-gen AMM with hooks (deployed Oct 2025) | https://app.uniswap.org |
-| Velodrome V3 | Concentrated liquidity pools, ve-tokenomics | https://velodrome.finance |
-| Curve | Efficient stablecoin trading | https://curve.finance |
-| SushiSwap | Multi-chain DEX | https://sushi.com |
-| Ubeswap | Leading Celo-native DEX (V2 + V3) | https://ubeswap.org |
-| Carbon DeFi | Automated on-chain trading strategies | https://app.carbondefi.xyz |
+| Curve | Stablecoin trading (~$278K TVL) | https://curve.finance |
+| Ubeswap | Celo-native DEX (V2 + V3, small TVL) | https://ubeswap.org |
+| Carbon DeFi | Automated on-chain trading strategies (Bancor) | https://app.carbondefi.xyz |
 | Mento V3 | Multi-currency FX infrastructure | https://app.mento.org |
-| Mobius Money | Cross-chain stableswap | - |
-| Symmetric | Balancer-style AMM | https://symmetric.finance |
+
+> **Note**: Velodrome, SushiSwap, Mobius, and Symmetric were previously listed but have minimal or no verifiable TVL on Celo as of April 2026. Check DefiLlama for current status.
 
 ### Lending & Borrowing
 
 | Protocol | Description | Website |
 |----------|-------------|---------|
-| Aave V3 | Multi-asset lending (deployed March 2025) | https://aave.com |
-| Morpho Blue | Permissionless market creation, isolated markets | https://app.morpho.org |
-| Feather | Risk-adjusted permissionless lending | https://app.feather.zone |
-| Moola Market | Lending platform for CELO, cUSD, cEUR | https://moola.market |
-| Prime Protocol | Cross-chain prime brokerage | https://app.primeprotocol.xyz |
+| Aave V3 | Multi-asset lending (~$11.1M TVL, largest on Celo) | https://aave.com |
+| Morpho V1 | Permissionless isolated lending markets (~$927K TVL) | https://app.morpho.org |
+
+> **Note**: Feather, Moola Market, and Prime Protocol were previously listed but have minimal or no verifiable TVL on Celo as of April 2026.
 
 ### Yield & Liquidity Management
 
@@ -183,8 +180,7 @@ Wallet docs: https://docs.celo.org/tooling/wallets/index
 | Explorer | URL |
 |----------|-----|
 | Celoscan | https://celoscan.io |
-| Blockscout | https://explorer.celo.org |
-| Dora | https://www.ondora.xyz/network/celo |
+| Blockscout | https://celo.blockscout.com |
 
 ### Developer SDKs & Libraries
 

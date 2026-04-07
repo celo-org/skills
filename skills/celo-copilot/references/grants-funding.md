@@ -1,96 +1,92 @@
 # Celo Grants & Funding Programs
 
-> Source: https://docs.celo.org/build-on-celo/fund-your-project
-> Additional: https://www.celopg.eco/programs
+> Source: https://www.celopg.eco/programs
+> Additional: https://docs.celo.org/build-on-celo/fund-your-project
+> Last verified: April 7, 2026
 
 ---
 
-## Active Programs
+## Currently Live Programs
 
-### Proof of Ship
-- **Type**: Retroactive rewards for consistent building
-- **How it works**: Apply for monthly rewards by demonstrating shipping progress
-- **How to apply**: Subscribe at https://celo-devs.beehiiv.com/subscribe and track progress on Karma GAP
-- **Best for**: Builders actively shipping on Celo who want ongoing recognition
-
-### Prezenti Grants
+### Prezenti: Anchor Round
 - **Type**: Milestone-based grants
-- **Amount**: Up to $25K (Anchor Round), up to $50K (Peach Round)
-- **Timeline**: 4-6 week decisions
-- **Website**: https://www.prezenti.xyz/
+- **Amount**: Up to 25K USD
+- **Dates**: Feb 25 – Jun 30, 2026
+- **Host**: Prezenti
+- **Timeline**: 2-4 weeks for notification, rolling basis until funds disbursed
 - **Best for**: Projects at various stages needing structured milestone funding
+
+### GoodBuilders Season 3
+- **Type**: Continuous funding round
+- **Amount**: $50K USD in G$
+- **Dates**: Feb 5 – May 18, 2026
+- **Host**: GoodDollar
+- **Focus**: Projects driving G$ usage, adoption, and ecosystem growth
+- **Best for**: Projects integrating GoodDollar UBI token
 
 ### Celo Builder Fund
 - **Type**: Investment
-- **Amount**: $25K per project, potential for additional funding
-- **Operated by**: Verda Ventures
-- **Website**: https://www.celopg.eco/programs/celo-builder-fund
+- **Amount**: $25K cUSD per project (potential for additional funding)
+- **Dates**: Jan 1 – Dec 31, 2026 (year-round)
+- **Host**: Celo Devs / Verda Ventures
 - **Contact**: team@verda.ventures
-- **Best for**: Venture-stage projects building on Celo, especially MiniPay builders
+- **Best for**: Venture-stage projects building on Celo
 
-### Celo Public Goods — Retroactive Funding
-- **Type**: Retroactive rewards
-- **Website**: https://www.celopg.eco/programs
-- **Best for**: Projects that have already delivered public goods impact
+> **Note**: Proof of Ship S2 (20K USDT, Apr 1 – Jul 31) is marked "Past" on celopg.eco as of April 2026 despite the date range. Check celopg.eco/programs for the latest status.
 
-### Proof of Impact
-- **Type**: Automated gas fee revenue sharing
-- **How it works**: Automates gas fee revenue splits to fund applications based on onchain KPIs
-- **Platform**: https://www.divvi.xyz/
-- **Best for**: Live applications with measurable onchain usage
+---
 
-### Support Streams
-- **Type**: Protocol incentives
-- **Amount**: Bi-weekly CELO budgets for approved applicants
-- **Website**: https://www.celopg.eco/programs
-- **Best for**: Active protocols and infrastructure providers
+## Other Funding Channels
+
+### Commons Builder Income
+- **Type**: Daily rewards for qualified builders
+- **Platform**: https://www.commonsprotocol.xyz/
 
 ### Builder Rewards (Talent Protocol)
 - **Type**: Monthly rewards
 - **Amount**: 10,000 CELO/month pool
 - **Partnership**: Celo PG x Talent Protocol
-- **Website**: https://www.celopg.eco/programs
-- **Best for**: Active builders with strong contribution profiles
 
-### Commons Builder Income
-- **Type**: Daily rewards
-- **Platform**: https://www.commonsprotocol.xyz/
-- **Best for**: Qualified builders seeking daily incentive structures
-
-### GoodBuilders Program
-- **Type**: Year-long initiative
-- **Amount**: $220,000 total
-- **Focus**: Building with G$ (GoodDollar)
-- **Details**: https://gooddollar.notion.site/GoodBuilders-Program-1a6f258232f080fea8a6e3760bb8f53d
-- **Best for**: Projects integrating GoodDollar UBI token
-
-### Glo Dollar Liquidity Flywheel
-- **Type**: Grants
-- **Amount**: ~$40,000
-- **Focus**: Liquidity improvement projects
-- **Website**: https://www.glodollar.org/articles/glo-dollar-and-celo-public-goods
-- **Best for**: DeFi/liquidity-focused projects
-
-### Celo Camp
-- **Type**: Accelerator
-- **Website**: https://www.celocamp.com/
-- **Best for**: Early-stage projects seeking structured acceleration and mentorship
-
-### Celo Africa DAO Incubator
-- **Type**: Incubator
-- **Focus**: African project adoption
-- **Apply**: https://docs.google.com/forms/d/e/1FAIpQLSdRgbeFNKulww_-8w-LsK7-3lAR72NUVCinvyr2MUHW9MfsIg/viewform
-- **Best for**: African builders and projects targeting Africa
-
----
-
-## Reputation Building
+### Divvi (Proof of Impact)
+- **Type**: Automated gas fee revenue sharing based on onchain KPIs
+- **Platform**: https://www.divvi.xyz/
+- **Best for**: Live applications with measurable usage
 
 ### Karma GAP
 - **Purpose**: Create a project profile to showcase contributions and build credibility
 - **Why**: Retroactive funding programs use Karma GAP to verify progress
-- **Docs**: https://docs.gap.karmahq.xyz/how-to-guides/integrations/celo-proof-of-ship
-- **Recommendation**: Every Celo builder should set up a Karma GAP profile
+
+### Celo Camp
+- **Type**: Accelerator
+- **Website**: https://www.celocamp.com/
+- **Best for**: Early-stage projects seeking structured acceleration
+
+### Celo Africa DAO Incubator
+- **Type**: Incubator for African projects
+
+---
+
+## Past Programs (from celopg.eco)
+
+| Program | Funding | Dates | Host |
+|---------|---------|-------|------|
+| Proof of Ship S2 | 20K USDT | Apr 1 – Jul 31, 2026 | CeloDevs |
+| Synthesis | 10K USDT | Mar 11-25, 2026 | Celo Devs |
+| Build Agents for Real World | $8.5K USDT | Mar 2-22, 2026 | Celo Public Goods |
+| Cel'EU Cirkvit S1 | 27K CELO | Nov-Dec 2025 | Celo Europe |
+| Gitcoin Grants 24 | $1.5M USD | Oct-Dec 2025 | Celo Public Goods |
+| Mini App Mondays | 250 + 1K CELO/week | Sep-Dec 2025 | Celo Devs |
+| Prezenti Peach Round | Up to 50K USD | Aug-Dec 2025 | Prezenti |
+| Support Streams S1 | 150K CELO + 150K OP | Sep 2025-Jan 2026 | Celo Public Goods |
+| Proof of Impact S1 | 250K CELO + 100K OP | Aug-Dec 2025 | Celo Public Goods |
+| Proof of Ship S1 | 30K cUSD + 100K CELO | Aug-Dec 2025 | Celo Devs |
+| GoodBuilders Round 2 | $70K G$ + 50K CELO | Jul-Oct 2025 | GoodDollar |
+| CeloPG & Farcaster | 50K CELO | May-Jul 2025 | Celo Public Goods |
+| USDGLO Flywheel | 6K USDGLO + 10K CELO | Jun-Jul 2025 | Glo Dollar |
+| Builder Rewards | 30K CELO | May-Jul 2025 | Celo Public Goods |
+| Support Streams S0 | 100K CELO | May-Jul 2025 | Celo Public Goods |
+| Proof of Impact S0 | 150K CELO | May-Jul 2025 | Celo Public Goods |
+| Proof of Ship (original) | 30K cUSD | Feb-Jul 2025 | Celo Devs |
 
 ---
 
@@ -98,12 +94,10 @@
 
 | Building... | Recommended Programs |
 |-------------|---------------------|
-| A live app with users | Proof of Impact, Support Streams, Retroactive Funding |
-| A new project (idea stage) | Prezenti Grants, Celo Camp |
-| A MiniPay Mini App | Celo Builder Fund (Verda Ventures) |
-| Actively shipping features | Proof of Ship, Builder Rewards |
-| DeFi / Liquidity | Glo Dollar Flywheel, Support Streams |
-| Africa-focused | Celo Africa DAO Incubator, Celo Camp |
-| UBI / Social Impact | GoodBuilders Program |
-| Infrastructure / Public Goods | CPG Retroactive Funding, Support Streams |
-| Venture-ready | Celo Builder Fund ($25K investment) |
+| Any Celo project (milestone-based) | Prezenti Anchor Round (up to 25K) |
+| GoodDollar integration | GoodBuilders S3 ($50K G$) |
+| Venture-stage project | Celo Builder Fund ($25K cUSD) |
+| Live app with onchain usage | Divvi / Proof of Impact |
+| Active builder seeking daily rewards | Commons Builder Income |
+| Early-stage, need mentorship | Celo Camp (accelerator) |
+| Africa-focused | Celo Africa DAO Incubator |
