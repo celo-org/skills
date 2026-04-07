@@ -5,7 +5,7 @@ The comprehensive skill for building on Celo. Ecosystem intelligence, developer 
 ## Install
 
 ```bash
-npx openskills install celo-org/celo-copilot -g
+npx skills add celo-org/copilot
 ```
 
 Works with Claude Code, Codex, and OpenClaw.

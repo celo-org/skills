@@ -89,16 +89,16 @@ Build AI agents that transact on Celo.
 
 **References**: `ai-agents.md`
 
-### 6. Governance
+### 6. Governance (Live)
 
-Navigate Celo's on-chain governance system.
+Navigate Celo's on-chain governance system with **live data**.
 
-- Proposal lifecycle, voting, and execution
-- CeloCLI and Mondo voting interfaces
-- Security Council role
-- Epoch rewards and carbon offset fund
+- **Mondo API**: Fetch all proposals, votes, and execution status from `mondo.celo.org/api/governance/proposals`
+- **CGP Repository**: Read full proposal text from `celo-org/governance` on GitHub
+- **Forum API**: Get governance discussions from `forum.celo.org/c/governance/12.json`
+- Proposal lifecycle, voting, Security Council, epoch rewards
 
-**References**: `governance.md`
+**References**: `governance.md`, `live-data-sources.md`
 
 ### 7. Contract Address Lookup
 

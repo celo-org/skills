@@ -184,11 +184,106 @@ curl -s "https://celo.blockscout.com/api/v2/addresses/ADDRESS/token-balances"
 
 ---
 
+## 8. Governance — Celo Mondo API
+
+Celo Mondo (`mondo.celo.org`) has a **public JSON API** for governance proposals. No auth needed.
+
+### Get all governance proposals
+
+```bash
+curl -s 'https://mondo.celo.org/api/governance/proposals' | jq '.[:5] | .[] | {id, cgp, title, stage, timestamp, proposer, approvedAt, executedAt}'
+```
+
+### Proposal fields
+
+Each proposal includes: `id`, `cgp` (CGP number), `title`, `author`, `stage` (numeric), `timestamp`, `proposer`, `deposit`, `networkWeight`, `transactionCount`, `queuedAt`, `dequeuedAt`, `approvedAt`, `executedAt`, `url` (forum link), `cgpUrl` (GitHub link), `cgpUrlRaw` (raw markdown), `constitutionThreshold`.
+
+### Get votes for a proposal
+
+```bash
+curl -s 'https://mondo.celo.org/api/governance/votes?proposalId=PROPOSAL_ID' | jq 'keys | length'
+```
+
+### Stage values
+
+Stages are numeric. Common values: `6` = executed/passed.
+
+**When to use**: Any question about governance proposals, voting results, proposal history, or "what proposals are active?"
+
+---
+
+## 9. Governance — CGP Repository (GitHub)
+
+All Celo Governance Proposals (CGPs) are stored as markdown in `celo-org/governance`.
+
+### List all CGPs
+
+```bash
+gh api repos/celo-org/governance/contents/CGPs | jq -r '.[].name' | sort -V | tail -10
+```
+
+### Read a specific CGP
+
+```bash
+# Replace cgp-0232.md with any CGP number
+curl -s 'https://raw.githubusercontent.com/celo-org/governance/main/CGPs/cgp-0232.md' | head -40
+```
+
+### CGP frontmatter fields
+
+Each CGP markdown file has YAML frontmatter with: `cgp`, `title`, `date-created`, `author`, `status` (DRAFT, PROPOSED, EXECUTED, etc.), `discussions-to` (forum URL), `governance-proposal-id`, `date-executed`.
+
+**When to use**: Reading full proposal text, understanding proposal details, checking proposal status history.
+
+---
+
+## 10. Governance — Celo Forum (Discourse API)
+
+The Celo Forum (`forum.celo.org`) runs on Discourse with a **public JSON API** — no auth needed.
+
+### Get governance discussions
+
+```bash
+curl -s 'https://forum.celo.org/c/governance/12.json' | jq '.topic_list.topics[:5] | .[] | {id, title, created_at, posts_count, views}'
+```
+
+### Get latest topics across all categories
+
+```bash
+curl -s 'https://forum.celo.org/latest.json' | jq '.topic_list.topics[:5] | .[] | {id, title, category_id, created_at, reply_count}'
+```
+
+### Read a specific topic
+
+```bash
+curl -s 'https://forum.celo.org/t/TOPIC_ID.json' | jq '{title, created_at, posts_count, views, tags}'
+```
+
+### Search the forum
+
+```bash
+curl -s 'https://forum.celo.org/search.json?q=SEARCH_TERM' | jq '.topics[:5] | .[] | {id, title}'
+```
+
+### Key category IDs
+
+| Category | ID | URL |
+|----------|-----|-----|
+| Governance | 12 | `/c/governance/12.json` |
+| Announcements | 5 | `/c/announcements/5.json` |
+| Developers | 22 | `/c/developers/22.json` |
+| Ecosystem | 15 | `/c/ecosystem/15.json` |
+| Protocol | 20 | `/c/protocol/20.json` |
+
+**When to use**: Community discussions, proposal debate context, developer announcements.
+
+---
+
 ## Priority Order for Data Sources
 
 When answering questions, prefer data sources in this order:
 
-1. **Live API** (DefiLlama, The Grid, RPC, celopg.eco) — most current
+1. **Live API** (DefiLlama, The Grid, Mondo, Forum, RPC, celopg.eco) — most current
 2. **Official docs** (docs.celo.org/llms.txt) — authoritative for technical info
 3. **Hardcoded references** (contracts.md, network-info.md) — stable, verified data
 4. **Ecosystem directory** (ecosystem.md) — curated snapshot, may be stale

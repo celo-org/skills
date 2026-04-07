@@ -276,10 +276,10 @@ Celo's modular skill system for AI coding assistants.
 
 ```bash
 # All skills
-npx openskills install celo-org/agent-skills -g
+npx skills add celo-org/agent-skills -g
 
 # Specific skill
-npx openskills install celo-org/agent-skills --skill evm-hardhat -g
+npx skills add celo-org/agent-skills --skill evm-hardhat -g
 ```
 
 ### Skill Structure
