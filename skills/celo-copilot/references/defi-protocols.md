@@ -1,7 +1,8 @@
 # DeFi Protocol Reference for Celo
 
-> Sources: docs.celo.org, protocol documentation, DefiLlama
-> For live TVL: https://defillama.com/chain/Celo
+> Sources: docs.celo.org, protocol documentation
+> **For live TVL data**, always query DefiLlama API — see `live-data-sources.md`
+> Do NOT rely on hardcoded TVL numbers in this file — they go stale quickly.
 
 ---
 

@@ -11,23 +11,24 @@
 
 | Protocol | Description | Website |
 |----------|-------------|---------|
-| Uniswap V3 | Concentrated liquidity AMM (~$5.2M TVL) | https://app.uniswap.org |
+| Uniswap V3 | Concentrated liquidity AMM | https://app.uniswap.org |
 | Uniswap V4 | Next-gen AMM with hooks (deployed Oct 2025) | https://app.uniswap.org |
-| Curve | Stablecoin trading (~$278K TVL) | https://curve.finance |
-| Ubeswap | Celo-native DEX (V2 + V3, small TVL) | https://ubeswap.org |
+| Velodrome V3 | Concentrated liquidity, ve-tokenomics | https://velodrome.finance |
+| Curve | Efficient stablecoin trading | https://curve.finance |
+| Ubeswap | Celo-native DEX (V2 + V3) | https://ubeswap.org |
 | Carbon DeFi | Automated on-chain trading strategies (Bancor) | https://app.carbondefi.xyz |
 | Mento V3 | Multi-currency FX infrastructure | https://app.mento.org |
-
-> **Note**: Velodrome, SushiSwap, Mobius, and Symmetric were previously listed but have minimal or no verifiable TVL on Celo as of April 2026. Check DefiLlama for current status.
 
 ### Lending & Borrowing
 
 | Protocol | Description | Website |
 |----------|-------------|---------|
-| Aave V3 | Multi-asset lending (~$11.1M TVL, largest on Celo) | https://aave.com |
-| Morpho V1 | Permissionless isolated lending markets (~$927K TVL) | https://app.morpho.org |
+| Aave V3 | Multi-asset lending, largest on Celo | https://aave.com |
+| Morpho V1 | Permissionless isolated lending markets | https://app.morpho.org |
+| Feather | Risk-adjusted permissionless lending | https://app.feather.zone |
 
-> **Note**: Feather, Moola Market, and Prime Protocol were previously listed but have minimal or no verifiable TVL on Celo as of April 2026.
+> **For live TVL data**, query DefiLlama: `curl -s https://api.llama.fi/protocols | jq '[.[] | select(.chains[]? == "Celo")] | sort_by(-.tvl)'`
+> See `live-data-sources.md` for more API examples.
 
 ### Yield & Liquidity Management
 
