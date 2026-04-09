@@ -8,7 +8,7 @@ homepage: https://celo.org
 license: Apache-2.0
 metadata:
   author: celo-org
-  version: "1.1.0"
+  version: "1.2.0"
 ---
 
 # Celo Copilot
@@ -74,8 +74,9 @@ Build Mini Apps for MiniPay — Celo's stablecoin wallet with 11M+ users.
 - Testing with ngrok on physical devices
 - UX best practices for emerging markets
 - Ready-to-use templates: payment flow, bill payment, balance display
+- **Live Mini Apps catalog** (snapshot): published discovery listings, categories, links, and **per-country targeting notes** — see `minipay-live-apps.md` (availability varies by market; not a live API)
 
-**References**: `minipay-guide.md`, `minipay-templates.md`, `odis-socialconnect.md`
+**References**: `minipay-guide.md`, `minipay-templates.md`, `odis-socialconnect.md`, `minipay-live-apps.md`
 
 ### 5. AI Agent Builder
 
@@ -137,6 +138,7 @@ Chain IDs, RPCs, explorers, faucets, and fee currency addresses.
 | Protocol integration | Check `defi-protocols.md` |
 | Build / deploy / verify | Check `builder-guide.md`, `dev-templates.md` |
 | MiniPay development | Check `minipay-guide.md`, `minipay-templates.md` |
+| What Mini Apps are live / discovery ideas | Check `minipay-live-apps.md` (snapshot; country availability varies) |
 | ODIS / phone lookup / SocialConnect | Check `odis-socialconnect.md`, `minipay-guide.md`, `contracts.md` |
 | AI agent building | Check `ai-agents.md` |
 | Grants / funding | Check `grants-funding.md` |
@@ -158,6 +160,7 @@ Chain IDs, RPCs, explorers, faucets, and fee currency addresses.
 | Docs pages | `curl docs.celo.org/llms.txt` | `docs-map.md` snapshot |
 | On-chain data | Celo RPC (`forno.celo.org`) | — |
 | Token/contract info | Blockscout API (no key needed) | Celoscan API (key needed) |
+| MiniPay discovery listings | MiniPay app in target regions | `minipay-live-apps.md` snapshot |
 
 ### Step 3: Synthesize & Present
 

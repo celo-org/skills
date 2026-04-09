@@ -7,6 +7,10 @@ MiniPay is a non-custodial stablecoin wallet integrated into Opera Mini and avai
 - Android: https://play.google.com/store/apps/details?id=com.opera.minipay
 - iOS: https://apps.apple.com/de/app/minipay-easy-global-wallet/id6504087257
 
+### Live Mini Apps in discovery (for builders)
+
+To see **what is already shipping** in MiniPay (categories, publishers, deep links) and how **country targeting** works, use the skill reference **`minipay-live-apps.md`**. It is a **snapshot** from the discovery export, **not** a live API — and **not every app is available in every country**; the reference documents whitelist/blacklist hints from the export.
+
 ---
 
 ## Quickstart
