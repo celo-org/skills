@@ -8,7 +8,7 @@ homepage: https://celo.org
 license: Apache-2.0
 metadata:
   author: celo-org
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # Celo Copilot
@@ -70,12 +70,12 @@ Build Mini Apps for MiniPay — Celo's stablecoin wallet with 11M+ users.
 - MiniPay detection (`window.ethereum.isMiniPay`)
 - Auto-connect patterns (no connect button in MiniPay)
 - Stablecoin payments with fee abstraction
-- Phone number → address resolution (ODIS)
+- Phone number → address via **ODIS (PnP) quota**, **OdisPayments** (cUSD/USDm top-up), **FederatedAttestations**, and **MiniPay issuer** (`0x7888612486844Bb9BE598668081c59A9f7367FBc` as trusted issuer)
 - Testing with ngrok on physical devices
 - UX best practices for emerging markets
 - Ready-to-use templates: payment flow, bill payment, balance display
 
-**References**: `minipay-guide.md`, `minipay-templates.md`
+**References**: `minipay-guide.md`, `minipay-templates.md`, `odis-socialconnect.md`
 
 ### 5. AI Agent Builder
 
@@ -137,6 +137,7 @@ Chain IDs, RPCs, explorers, faucets, and fee currency addresses.
 | Protocol integration | Check `defi-protocols.md` |
 | Build / deploy / verify | Check `builder-guide.md`, `dev-templates.md` |
 | MiniPay development | Check `minipay-guide.md`, `minipay-templates.md` |
+| ODIS / phone lookup / SocialConnect | Check `odis-socialconnect.md`, `minipay-guide.md`, `contracts.md` |
 | AI agent building | Check `ai-agents.md` |
 | Grants / funding | Check `grants-funding.md` |
 | Documentation | Check `docs-map.md` |

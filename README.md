@@ -62,7 +62,7 @@ Once installed, the skill activates automatically. Just describe what you need:
 
 ```
 skills/celo-copilot/
-  SKILL.md                          # Main skill definition (v1.0.0)
+  SKILL.md                          # Main skill definition (v1.1.0)
   references/
     # Phase 1: Ecosystem Intelligence
     network-info.md                 # Chain IDs, RPCs, explorers, fee currencies
@@ -81,6 +81,7 @@ skills/celo-copilot/
     # Phase 4: MiniPay App Builder
     minipay-guide.md                # Complete MiniPay development guide
     minipay-templates.md            # Ready-to-use Mini App code templates
+    odis-socialconnect.md           # ODIS (PnP), OdisPayments quota, FederatedAttestations, MiniPay issuer
     # Phase 5: Platform Features
     governance.md                   # On-chain governance reference
     ai-agents.md                    # ERC-8004, x402, MCP, Agent Skills

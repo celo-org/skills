@@ -214,30 +214,54 @@ const feeFormatted = formatUnits(totalFee, 18); // e.g., "0.0001"
 
 ## Phone Number → Address Resolution
 
-Resolve phone numbers to wallet addresses using ODIS:
+Resolve **E.164** numbers (e.g. `+14155552671`) to wallet addresses using **ODIS (PnP)** + **FederatedAttestations**. MiniPay mappings are attested under issuer **`0x7888612486844Bb9BE598668081c59A9f7367FBc`** (pass this as a **trusted issuer**, not as the ODIS quota account).
+
+- **Quota**: Mainnet PnP queries need **non-zero `remainingQuota`**. A **USDm/cUSD balance alone is not enough** — you usually must **`payInCUSD`** on **OdisPayments** after **`increaseAllowance`** on the stable token. See **`odis-socialconnect.md`** for the full quota flow and contract addresses (`contracts.md`).
+
+**Pattern** (ContractKit + `@celo/identity`; typical for **backend** signers — use **DEK / wallet signing** appropriately in Mini Apps):
 
 ```typescript
+import { newKit } from "@celo/contractkit";
 import { OdisUtils } from "@celo/identity";
-import { AuthSigner } from "@celo/identity/lib/odis/query";
-import { FederatedAttestationsAbi } from "@celo/abis";
+import type { AuthSigner } from "@celo/identity/lib/odis/query";
 
-// 1. Get ODIS identifier from phone number
-const identifier = await OdisUtils.Identifier.getObfuscatedIdentifier(
-  phoneNumber,
-  OdisUtils.Identifier.IdentifierPrefix.PHONE_NUMBER,
-  issuerAddress,
-  authSigner,
-  serviceContext,
+const MINIPAY_ISSUER = "0x7888612486844Bb9BE598668081c59A9f7367FBc";
+
+const kit = newKit("https://forno.celo.org");
+kit.addAccount(walletPrivateKey); // 0x-prefixed hex
+const locals = kit.connection.getLocalAccounts();
+kit.defaultAccount = locals[0];
+const quotaAccount = locals[0];
+
+const serviceContext = OdisUtils.Query.getServiceContext(
+  OdisUtils.Query.OdisContextName.MAINNET,
+  OdisUtils.Query.OdisAPI.PNP,
 );
 
-// 2. Look up address from FederatedAttestations contract
-const attestations = await publicClient.readContract({
-  address: "0x0aD5b1d0C25ecF6266Dd951403723B2687d6aff2", // FederatedAttestations
-  abi: FederatedAttestationsAbi,
-  functionName: "lookupAttestations",
-  args: [identifier.obfuscatedIdentifier, [issuerAddress]],
-});
+const authSigner: AuthSigner = {
+  authenticationMethod: OdisUtils.Query.AuthenticationMethod.WALLET_KEY,
+  contractKit: kit,
+};
+
+const { obfuscatedIdentifier } =
+  await OdisUtils.Identifier.getObfuscatedIdentifier(
+    phoneE164,
+    OdisUtils.Identifier.IdentifierPrefix.PHONE_NUMBER,
+    quotaAccount,
+    authSigner,
+    serviceContext,
+  );
+
+const federated = await kit.contracts.getFederatedAttestations();
+const { accounts } = await federated.lookupAttestations(obfuscatedIdentifier, [
+  MINIPAY_ISSUER,
+]);
+// accounts[0] is the resolved address when an attestation exists
 ```
+
+**Install**: `npm install @celo/contractkit @celo/identity`
+
+See **`references/odis-socialconnect.md`** for troubleshooting, **DEK (`ENCRYPTION_KEY`)** auth, viem alternatives, and doc links.
 
 ---
 

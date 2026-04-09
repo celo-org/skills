@@ -115,10 +115,12 @@ function PayWithUSDm() {
 
 ContractKit is Celo's original SDK. **Use viem instead for new projects.** ContractKit is only needed for:
 - Legacy governance contract interactions
-- ODIS phone number privacy
+- ODIS phone number privacy (with **`@celo/identity`** for PnP: `getObfuscatedIdentifier`, quota, `getFederatedAttestations`)
 - Old Celo-specific contracts not on the OP Stack
 
-**Install**: `npm install @celo/contractkit`
+**ODIS / SocialConnect**: Use **`@celo/contractkit` + `@celo/identity`** together for **`WALLET_KEY`** auth and on-chain **`FederatedAttestations`** wrappers. Full flow, **OdisPayments** quota, **MiniPay issuer**, and **DEK** auth are documented in **`odis-socialconnect.md`**.
+
+**Install**: `npm install @celo/contractkit @celo/identity`
 
 ```typescript
 import { newKit } from "@celo/contractkit";

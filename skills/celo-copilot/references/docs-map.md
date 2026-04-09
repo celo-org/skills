@@ -97,6 +97,7 @@ Use this to find the right documentation page for any topic. Links go directly t
 | Ethers.js | https://docs.celo.org/tooling/libraries-sdks/ethers/index |
 | Web3.js | https://docs.celo.org/tooling/libraries-sdks/web3/index |
 | ContractKit | https://docs.celo.org/tooling/libraries-sdks/contractkit/index |
+| ODIS (phone identifiers, PnP) | https://docs.celo.org/tooling/libraries-sdks/contractkit/odis |
 | Thirdweb SDK | https://docs.celo.org/tooling/libraries-sdks/thirdweb-sdk/index |
 | Reown (WalletConnect) | https://docs.celo.org/tooling/libraries-sdks/reown/index |
 | Composer Kit UI | https://docs.celo.org/tooling/libraries-sdks/composer-kit |
