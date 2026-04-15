@@ -22,10 +22,13 @@ Foundry/Hardhat configs for Celo, fee abstraction implementation, SDK selection 
 Deep protocol reference for Uniswap V3/V4, Aave V3, Morpho Blue, Mento stablecoins, stCELO, Velodrome, and Curve on Celo. Includes contract addresses, interaction patterns, and yield strategies.
 
 ### MiniPay App Builder
-Build Mini Apps for MiniPay (11M+ wallets). Wallet detection, auto-connect patterns, stablecoin payments, phone number resolution, testing with ngrok, and ready-to-use code templates.
+Build Mini Apps for MiniPay (14M+ wallets). Wallet detection, auto-connect patterns, stablecoin payments, phone number resolution, testing with ngrok, and ready-to-use code templates.
 
 ### AI Agent Builder
 ERC-8004 (Agent Trust Protocol), x402 (HTTP micropayments), Celo MCP Server, and the Agent Skills specification. Build AI agents that transact autonomously on Celo.
+
+### Security & Audit Readiness
+Celo-specific security patterns (CELO duality, CIP-64 fee abstraction, Aave aToken drift, Mento circuit breakers, post-L2 epoch effects). Chain-agnostic Solidity audits defer to [pashov/skills](https://github.com/pashov/skills).
 
 ### Governance
 On-chain governance reference: proposal lifecycle, voting with Mondo/CeloCLI, Security Council, epoch rewards, and carbon offset fund.
@@ -81,11 +84,13 @@ skills/celo-copilot/
     # Phase 4: MiniPay App Builder
     minipay-guide.md                # Complete MiniPay development guide
     minipay-templates.md            # Ready-to-use Mini App code templates
+    minipay-scaffold-from-scratch.md # Raw Next.js + viem setup (alternative to Celo Composer)
     odis-socialconnect.md           # ODIS (PnP), OdisPayments quota, FederatedAttestations, MiniPay issuer
     minipay-live-apps.md            # Discovery snapshot: live Mini Apps, categories, country targeting
     # Phase 5: Platform Features
     governance.md                   # On-chain governance reference
     ai-agents.md                    # ERC-8004, x402, MCP, Agent Skills
+    security-patterns.md            # Celo-specific security risks (pairs with pashov/skills)
 ```
 
 ## Contributing

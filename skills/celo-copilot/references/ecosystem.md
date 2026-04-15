@@ -2,6 +2,7 @@
 
 > Sources: docs.celo.org, DefiLlama, celo.org/ecosystem
 > For live TVL data, always refer to https://defillama.com/chain/Celo
+> Last updated: 2026-04-15
 
 ---
 
@@ -211,7 +212,7 @@ Wallet docs: https://docs.celo.org/tooling/wallets/index
 
 MiniPay is Celo's flagship stablecoin wallet, built into Opera Mini and also available as a standalone app.
 
-**Stats**: 11M+ wallets, 300M+ stablecoin transactions, 15M+ monthly Mini App opens, 60+ countries
+**Stats**: 14M+ wallets, 300M+ stablecoin transactions, 15M+ monthly Mini App opens, 60+ countries
 
 ### Known Mini Apps
 

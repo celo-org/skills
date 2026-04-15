@@ -8,7 +8,7 @@ homepage: https://celo.org
 license: Apache-2.0
 metadata:
   author: celo-org
-  version: "1.2.0"
+  version: "1.3.0"
 ---
 
 # Celo Copilot
@@ -22,7 +22,7 @@ Celo is a leading **Ethereum L2** (OP Stack + EigenDA + zkEVM). Purpose-built fo
 - **Chain ID**: 42220 (Mainnet), 11142220 (Sepolia Testnet)
 - **Block time**: ~1 second | **Gas**: ~$0.0005 | **Fee abstraction**: Pay gas with USDC, USDT, USDm
 - **Stablecoins**: 15+ Mento local-currency stablecoins + USDC + USDT
-- **MiniPay**: 11M+ wallets, 300M+ stablecoin transactions, 60+ countries
+- **MiniPay**: 14M+ wallets, 300M+ stablecoin transactions, 60+ countries
 
 ---
 
@@ -43,7 +43,7 @@ Search the crypto ecosystem, find competitors, analyze verticals, and discover w
 Help developers set up, build, deploy, and verify smart contracts on Celo.
 
 - Foundry and Hardhat configuration for Celo
-- Fee abstraction implementation (CIP-64 / `feeCurrency`)
+- Fee abstraction (CIP-64 / `feeCurrency`) — **always use adapter addresses for USDC/USDT**, token addresses for USDm/EURm/BRLm. Canonical table in `builder-guide.md` → _Allowed Fee Currencies (Mainnet)_. USDC adapter: `0x2F25deB3848C207fc8E0c34035B3Ba7fC157602B`. USDT adapter: `0x0e2a3e05bc9a16f5292a6170456a710cb89c6f72`.
 - CELO token duality (native + ERC-20) gotchas
 - SDK selection guide (Viem, Wagmi, ContractKit, Thirdweb)
 - Contract verification on Celoscan/Blockscout
@@ -65,7 +65,7 @@ Deep protocol knowledge for building DeFi on Celo.
 
 ### 4. MiniPay App Builder
 
-Build Mini Apps for MiniPay — Celo's stablecoin wallet with 11M+ users.
+Build Mini Apps for MiniPay — Celo's stablecoin wallet with 14M+ users.
 
 - MiniPay detection (`window.ethereum.isMiniPay`)
 - Auto-connect patterns (no connect button in MiniPay)
@@ -74,9 +74,10 @@ Build Mini Apps for MiniPay — Celo's stablecoin wallet with 11M+ users.
 - Testing with ngrok on physical devices
 - UX best practices for emerging markets
 - Ready-to-use templates: payment flow, bill payment, balance display
+- Scaffold options: **Celo Composer** (batteries-included) or **raw Next.js** (see `minipay-scaffold-from-scratch.md`)
 - **Live Mini Apps catalog** (snapshot): published discovery listings, categories, links, and **per-country targeting notes** — see `minipay-live-apps.md` (availability varies by market; not a live API)
 
-**References**: `minipay-guide.md`, `minipay-templates.md`, `odis-socialconnect.md`, `minipay-live-apps.md`
+**References**: `minipay-guide.md`, `minipay-templates.md`, `minipay-scaffold-from-scratch.md`, `odis-socialconnect.md`, `minipay-live-apps.md`
 
 ### 5. AI Agent Builder
 
@@ -90,7 +91,18 @@ Build AI agents that transact on Celo.
 
 **References**: `ai-agents.md`
 
-### 6. Governance (Live)
+### 6. Security & Audit Readiness
+
+Help builders ship safer Celo contracts by flagging Celo-specific risks and pointing to proven audit tooling.
+
+- **Celo-specific risks**: CELO token duality, fee abstraction (CIP-64) accounting, Aave aToken ratio drift, Mento circuit breaker exposure, post-L2 epoch boundary effects
+- **General Solidity audit coverage**: defer to `pashov/skills` (https://github.com/pashov/skills) — `solidity-auditor` (8-agent parallel audit) and `x-ray` (threat model + attack surface)
+- Use `security-patterns.md` as the Celo layer on top of chain-agnostic audits
+- Explicit uncertainty tags on any risk where published specifications are incomplete
+
+**References**: `security-patterns.md`
+
+### 7. Governance (Live)
 
 Navigate Celo's on-chain governance system with **live data**.
 
@@ -101,27 +113,29 @@ Navigate Celo's on-chain governance system with **live data**.
 
 **References**: `governance.md`, `live-data-sources.md`
 
-### 7. Contract Address Lookup
+### 8. Contract Address Lookup
 
 Verified addresses from `docs.celo.org` — core protocol, tokens, L1 bridge, Uniswap, Aave, Morpho.
 
 **References**: `contracts.md`
 
-### 8. Grant & Funding Matchmaking
+### 9. Grant & Funding Matchmaking
 
 All active Celo funding programs with a matchmaking guide.
 
-**References**: `grants-funding.md`
+**Always fetch live program status from `celopg.eco/programs`** before answering — program status, dates, and eligibility change mid-quarter and the cached reference goes stale. See `live-data-sources.md` §2.
 
-### 9. Documentation Navigation
+**References**: `grants-funding.md`, `live-data-sources.md`
+
+### 10. Documentation Navigation
 
 Structured map of `docs.celo.org` (~150 pages) for finding the exact docs page.
 
 **References**: `docs-map.md`
 
-### 10. Network Information
+### 11. Network Information
 
-Chain IDs, RPCs, explorers, faucets, and fee currency addresses.
+Chain IDs, RPCs, explorers, faucets, RPC limits (`eth_getLogs` block range), and fee currency addresses.
 
 **References**: `network-info.md`
 
@@ -141,6 +155,7 @@ Chain IDs, RPCs, explorers, faucets, and fee currency addresses.
 | What Mini Apps are live / discovery ideas | Check `minipay-live-apps.md` (snapshot; country availability varies) |
 | ODIS / phone lookup / SocialConnect | Check `odis-socialconnect.md`, `minipay-guide.md`, `contracts.md` |
 | AI agent building | Check `ai-agents.md` |
+| Security / audit prep | Check `security-patterns.md` (Celo-specific); defer general Solidity audits to `pashov/skills` |
 | Grants / funding | Check `grants-funding.md` |
 | Documentation | Check `docs-map.md` |
 | Network config | Check `network-info.md` |

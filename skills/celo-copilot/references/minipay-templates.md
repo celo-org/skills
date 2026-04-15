@@ -2,9 +2,23 @@
 
 Ready-to-use code for common Mini App patterns.
 
+## Contents
+
+| # | Template | What it does | Drop into |
+|---|----------|--------------|-----------|
+| 1 | Next.js MiniPay Starter Page | Full starter: detection, auto-connect, balance, transfer | `app/page.tsx` |
+| 2 | `useMiniPay` React Hook | Reusable hook for wallet state inside MiniPay | `hooks/useMiniPay.ts` |
+| 3 | Stablecoin Payment Flow | Pay-with-stablecoin UX (approve + transfer + feeCurrency) | `components/PayButton.tsx` |
+| 4 | Bill Payment Pattern | Recurring / bill-style payment component | `components/BillPayment.tsx` |
+| 5 | Multi-Token Balance Display | Show USDm/USDC/USDT balances with correct decimals | `components/Balances.tsx` |
+
+Each template is standalone and copy-paste ready. USDC/USDT `feeCurrency` uses adapter addresses — see `builder-guide.md` → _Allowed Fee Currencies (Mainnet)_.
+
 ---
 
 ## 1. Next.js MiniPay Starter Page
+
+_Drop this into: `app/page.tsx`_
 
 ```tsx
 "use client";
@@ -13,8 +27,18 @@ import { useEffect, useState } from "react";
 import { createWalletClient, createPublicClient, custom, http, formatUnits } from "viem";
 import { celo } from "viem/chains";
 
+// Token addresses — use for balances, transfers, approvals
 const USDM_ADDRESS = "0x765DE816845861e75A25fCA122bb6898B8B1282a" as const;
 const USDC_ADDRESS = "0xcebA9300f2b948710d2653dD7B07f33A8B32118C" as const;
+const USDT_ADDRESS = "0x48065fbBE25f71C9282ddf5e1cD6D6A887483D5e" as const;
+
+// feeCurrency addresses — use ONLY in the `feeCurrency` transaction field (pay gas in stablecoin).
+// USDm is 18-decimal so token==adapter. USDC/USDT are 6-decimal and require adapter contracts —
+// passing the token address in `feeCurrency` will make the transaction fail.
+// Canonical table: builder-guide.md → Allowed Fee Currencies (Mainnet).
+const USDM_FEE_CURRENCY = USDM_ADDRESS;
+const USDC_FEE_CURRENCY = "0x2F25deB3848C207fc8E0c34035B3Ba7fC157602B" as const;
+const USDT_FEE_CURRENCY = "0x0e2a3e05bc9a16f5292a6170456a710cb89c6f72" as const;
 
 const ERC20_ABI = [
   {
@@ -91,6 +115,8 @@ export default function MiniPayApp() {
 
 ## 2. useMiniPay React Hook
 
+_Drop this into: `hooks/useMiniPay.ts`_
+
 ```typescript
 import { useEffect, useState, useCallback } from "react";
 import { createWalletClient, createPublicClient, custom, http, formatUnits } from "viem";
@@ -164,6 +190,8 @@ export function useMiniPay() {
 ---
 
 ## 3. Stablecoin Payment Flow
+
+_Drop this into: `components/PayButton.tsx`_
 
 ```typescript
 import {
@@ -262,6 +290,8 @@ async function sendPayment(
 
 ## 4. Bill Payment Pattern
 
+_Drop this into: `components/BillPayment.tsx`_
+
 Common Mini App pattern: user enters an amount, selects a service, and pays.
 
 ```tsx
@@ -349,10 +379,14 @@ export default function BillPayment() {
 
 ## 5. Multi-Token Balance Display
 
+_Drop this into: `components/Balances.tsx`_
+
 ```tsx
 import { createPublicClient, http, formatUnits } from "viem";
 import { celo } from "viem/chains";
 
+// Token addresses for balance reads. For `feeCurrency` gas payments,
+// USDC/USDT need their adapter addresses instead — see builder-guide.md.
 const TOKENS = [
   { symbol: "USDm", address: "0x765DE816845861e75A25fCA122bb6898B8B1282a", decimals: 18 },
   { symbol: "USDC", address: "0xcebA9300f2b948710d2653dD7B07f33A8B32118C", decimals: 6 },

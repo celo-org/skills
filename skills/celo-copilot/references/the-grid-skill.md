@@ -329,3 +329,14 @@ The Grid public API has no documented rate limits, but be respectful:
 - Batch related queries when possible
 - Cache results within a session
 - Don't run more than ~10 queries per minute
+
+## Fallback Strategy When Queries Return Empty
+
+The Grid uses substring matching only — a typo or unindexed project returns `[]`. Don't treat empty results as "the project doesn't exist."
+
+**Fallback order:**
+
+1. **Broaden the query.** Retry with `_ilike` plus shorter substrings or alternate spellings (e.g. `"mini pay"` and `"minipay"`, `"prezenti"` and `"Celo PG"`).
+2. **Check `ecosystem.md`.** The curated directory covers 30+ Celo DeFi protocols, bridges, oracles, wallets, and flagship Mini Apps — it may include projects The Grid hasn't indexed yet.
+3. **WebSearch / docs.celo.org.** For very new projects (deployed this week, hackathon submissions, just-announced partners), neither The Grid nor `ecosystem.md` will have them. Fall back to web search against official Celo docs and announcements.
+4. **Still empty? Say so.** Never fabricate a product listing to fill the gap — report that the query returned nothing across all three sources.

@@ -149,6 +149,9 @@ export async function POST(req: Request) {
       error: "Payment Required",
       scheme: "fixed",
       price: "100000",        // 0.10 USDC (6 decimals)
+      // x402 `currency` = the ERC-20 being charged (USDC token address). NOT the `feeCurrency`
+      // adapter. Gas for the on-chain settlement is separate — if the settler pays gas in USDC,
+      // it must use the USDC adapter (0x2F25deB3848C207fc8E0c34035B3Ba7fC157602B) in `feeCurrency`.
       currency: "0xcebA9300f2b948710d2653dD7B07f33A8B32118C",
       chainId: 42220,
     }), { status: 402 });

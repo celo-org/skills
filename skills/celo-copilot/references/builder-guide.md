@@ -146,6 +146,45 @@ Get a Celoscan API key at: https://celoscan.io/myapikey
 
 ---
 
+## Sending CELO — common failure & fix
+
+Because CELO has **both** a native path (like ETH) **and** an ERC-20 path at `0x471EcE3750Da237f93B8E339c536989b8978a438`, first-time builders often pick the wrong one and silently lose funds or revert.
+
+**Failure modes:**
+
+1. **Native path expected, ERC-20 used.** User sends CELO via `token.transfer(recipient, amount)`. Recipient contract's `receive()` / `fallback()` never fires. Any logic tied to native receipt (e.g. a staking deposit that checks `msg.value`) silently no-ops.
+2. **ERC-20 path expected, native used.** User sends CELO via `{ value: amount, to: recipient }`. An ERC-20-expecting contract (checking `balanceOf` / `transferFrom`) sees nothing.
+
+**Fix — pick the path that matches the recipient's ABI:**
+
+```ts
+import { createWalletClient, custom, parseEther, erc20Abi } from "viem";
+import { celo } from "viem/chains";
+
+const client = createWalletClient({ chain: celo, transport: custom(window.ethereum) });
+const CELO_ERC20 = "0x471EcE3750Da237f93B8E339c536989b8978a438" as const;
+
+// Sending to an EOA or a contract with receive()/fallback(): use NATIVE
+await client.sendTransaction({
+  to: recipient,
+  value: parseEther("1"), // 1 CELO as native
+  account,
+});
+
+// Sending to an ERC-20-aware contract (Uniswap router, Aave Pool, etc.): use ERC-20
+await client.writeContract({
+  address: CELO_ERC20,
+  abi: erc20Abi,
+  functionName: "transfer",
+  args: [recipient, parseEther("1")],
+  account,
+});
+```
+
+> **Rule of thumb:** if the recipient's method signature takes `uint256 amount` and you've separately approved an allowance, use the ERC-20 path. If it's `payable` and reads `msg.value`, use the native path. When in doubt, read the target contract on Celoscan.
+
+---
+
 ## Common Gotchas
 
 ### 1. Foundry Fork Testing & Token Duality
@@ -181,6 +220,10 @@ Celo staking operations (via stCELO Manager) are expensive: ~800K-1M gas per ope
 ### 7. L2 Migration Context
 
 Celo migrated from L1 to L2 on March 26, 2025 (block 31,056,500). Old tutorials referencing Celo as an L1 are outdated. The current stack is OP Stack + EigenDA + ZK fault proofs.
+
+### 8. `eth_getLogs` — 50K Block Range Limit
+
+Celo RPCs reject `eth_getLogs` spans > ~50,000 blocks with error `-32011 block range is too large`. Any indexer or event-history feature must paginate. See `network-info.md` → _RPC Limits & Gotchas_ for the chunked viem workaround.
 
 ---
 

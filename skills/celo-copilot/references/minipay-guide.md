@@ -2,7 +2,9 @@
 
 > Source: docs.celo.org/build-on-celo/build-on-minipay/*
 
-MiniPay is a non-custodial stablecoin wallet integrated into Opera Mini and available as a standalone app on Android and iOS. It's the fastest growing wallet in the Global South with 11M+ activations, 300M+ stablecoin transactions, available in 60+ countries.
+MiniPay is a non-custodial stablecoin wallet integrated into Opera Mini and available as a standalone app on Android and iOS. It's the fastest growing wallet in the Global South with 14M+ activations, 300M+ stablecoin transactions, available in 60+ countries.
+
+> Wallet counts are updated by the MiniPay team via the MiniPay site and Celo blog. If a precise current number is needed, prefer fetching from those sources over the number above.
 
 - Android: https://play.google.com/store/apps/details?id=com.opera.minipay
 - iOS: https://apps.apple.com/de/app/minipay-easy-global-wallet/id6504087257
@@ -20,6 +22,8 @@ To see **what is already shipping** in MiniPay (categories, publishers, deep lin
 ```bash
 npx @celo/celo-composer@latest create -t minipay
 ```
+
+> **Prefer a raw Next.js setup without Composer?** See `minipay-scaffold-from-scratch.md` for a minimal `create-next-app` + viem + ngrok path — useful for integrating MiniPay into an existing Next.js project or skipping Composer's monorepo/Hardhat scaffolding.
 
 ### Requirements
 
@@ -100,13 +104,18 @@ useEffect(() => {
 
 ## Supported Stablecoins
 
-| Token | Symbol | Address | Decimals |
-|-------|--------|---------|----------|
-| Mento Dollar | USDm (cUSD) | `0x765DE816845861e75A25fCA122bb6898B8B1282a` | 18 |
-| USDC | USDC | `0xcebA9300f2b948710d2653dD7B07f33A8B32118C` | 6 |
-| USDT | USDT | `0x48065fbBE25f71C9282ddf5e1cD6D6A887483D5e` | 6 |
+| Token | Symbol | Token Address | Decimals | `feeCurrency` (for gas) |
+|-------|--------|---------------|----------|-------------------------|
+| Mento Dollar | USDm (cUSD) | `0x765DE816845861e75A25fCA122bb6898B8B1282a` | 18 | `0x765DE816845861e75A25fCA122bb6898B8B1282a` (same) |
+| USDC | USDC | `0xcebA9300f2b948710d2653dD7B07f33A8B32118C` | 6 | `0x2F25deB3848C207fc8E0c34035B3Ba7fC157602B` (**adapter**) |
+| USDT | USDT | `0x48065fbBE25f71C9282ddf5e1cD6D6A887483D5e` | 6 | `0x0e2a3e05bc9a16f5292a6170456a710cb89c6f72` (**adapter**) |
 
-**Important**: USDm has 18 decimals while USDC/USDT have 6. Always check decimals before displaying amounts.
+**Important — two separate things**:
+
+1. **Decimals**: USDm has 18 decimals; USDC/USDT have 6. Always check decimals before displaying amounts.
+2. **Fee abstraction**: For **balances, transfers, and approvals**, use the **Token Address** column. For the **`feeCurrency` transaction field** (paying gas in stablecoins), use the **`feeCurrency` adapter address** — USDC/USDT transactions will **fail** if you pass the token address instead of the adapter. See `builder-guide.md` → _Allowed Fee Currencies (Mainnet)_ for the canonical table and underlying mechanics (CIP-64, FeeCurrencyDirectory).
+
+> **Bridged-token caveat:** the decimals above are for the **canonical** USDC/USDT on Celo. Bridged variants from other chains may have different decimals or different contract addresses. Always verify against the token's contract on Celoscan before integrating.
 
 ---
 

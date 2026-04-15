@@ -2,7 +2,9 @@
 
 > Source: https://www.celopg.eco/programs
 > Additional: https://docs.celo.org/build-on-celo/fund-your-project
-> Last verified: April 7, 2026
+> Last updated: 2026-04-15 (cache — always fetch live per directive below)
+
+> ⚠️ **Live data required.** Program status (Live/Past), dates, rewards, and eligibility change frequently — often mid-quarter. **Always fetch the current list from `https://www.celopg.eco/programs` before answering any grant question.** The tables below are a cached reference and may be stale the moment a program's status flips. See `live-data-sources.md` §2 for the fetch command. For eligibility / submission cadence / rewards, extract from the live page — do not infer from this file.
 
 ---
 
@@ -31,8 +33,6 @@
 - **Host**: Celo Devs / Verda Ventures
 - **Contact**: team@verda.ventures
 - **Best for**: Venture-stage projects building on Celo
-
-> **Note**: Proof of Ship S2 (20K USDT, Apr 1 – Jul 31) is marked "Past" on celopg.eco as of April 2026 despite the date range. Check celopg.eco/programs for the latest status.
 
 ---
 
@@ -70,7 +70,6 @@
 
 | Program | Funding | Dates | Host |
 |---------|---------|-------|------|
-| Proof of Ship S2 | 20K USDT | Apr 1 – Jul 31, 2026 | CeloDevs |
 | Synthesis | 10K USDT | Mar 11-25, 2026 | Celo Devs |
 | Build Agents for Real World | $8.5K USDT | Mar 2-22, 2026 | Celo Public Goods |
 | Cel'EU Cirkvit S1 | 27K CELO | Nov-Dec 2025 | Celo Europe |

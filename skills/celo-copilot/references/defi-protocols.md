@@ -97,6 +97,9 @@ import { parseUnits } from "viem";
 
 const AAVE_POOL = "0x3E59A31363E2ad014dcbc521c4a0d5757d9f3402";
 const USDC = "0xcebA9300f2b948710d2653dD7B07f33A8B32118C";
+// NOTE: the USDC constant above is the token address — correct for balances/approvals/transfers.
+// If you pay gas in USDC via `feeCurrency`, use the adapter `0x2F25deB3848C207fc8E0c34035B3Ba7fC157602B`
+// instead. See builder-guide.md → Allowed Fee Currencies.
 
 // 1. Approve USDC to Pool
 await walletClient.writeContract({
@@ -147,6 +150,60 @@ const userData = await publicClient.readContract({
 // Returns: totalCollateralBase, totalDebtBase, availableBorrowsBase,
 //          currentLiquidationThreshold, ltv, healthFactor
 ```
+
+### Fetching Live APY (Supply & Borrow Rates)
+
+Two options:
+
+**Option A — On-chain via UIPoolDataProvider (read-only, no indexer):**
+
+```typescript
+import { createPublicClient, http, formatUnits } from "viem";
+import { celo } from "viem/chains";
+
+const UI_POOL_DATA_PROVIDER = "0xe48424542b30b0b8D1Dc09099aceE407f40b4491";
+const POOL_ADDRESSES_PROVIDER = "0x9F7Cf9417D5251C59fE94fB9147feEe1aAd9Cea5";
+
+const client = createPublicClient({ chain: celo, transport: http() });
+
+const [reservesData] = await client.readContract({
+  address: UI_POOL_DATA_PROVIDER,
+  abi: uiPoolDataProviderAbi, // from @aave/contract-helpers, or declare manually
+  functionName: "getReservesData",
+  args: [POOL_ADDRESSES_PROVIDER],
+});
+
+// Each reserve has liquidityRate (supply APR) and variableBorrowRate (borrow APR) in RAY (1e27),
+// both expressed as a per-second rate.
+for (const r of reservesData) {
+  const supplyAPR = Number(formatUnits(r.liquidityRate, 27)) * 100;
+  const borrowAPR = Number(formatUnits(r.variableBorrowRate, 27)) * 100;
+  console.log(r.symbol, { supplyAPR, borrowAPR });
+}
+```
+
+> Rates from `UIPoolDataProvider` are **per-second in RAY (1e27)** — the snippet above converts to a simple annualized percentage. For the exact compounding formula Aave UI uses: `(1 + ratePerSecond)^SECONDS_PER_YEAR - 1`. See Aave V3 docs.
+
+**Option B — Off-chain via Aave V3 Subgraph (if available for Celo):**
+
+Check `https://thegraph.com/explorer` for the current Celo-Aave-V3 subgraph slug. Query shape:
+
+```graphql
+{
+  reserves {
+    symbol
+    liquidityRate
+    variableBorrowRate
+    totalLiquidity
+    totalCurrentVariableDebt
+  }
+  _meta { block { number } }
+}
+```
+
+> ⚠️ Subgraph availability on Celo has historically lagged other chains. Always verify the subgraph is live and fresh (check `_meta.block.number` vs current block) before relying on it. Default to on-chain reads for critical paths.
+
+**Which to use:** on-chain read is authoritative and latency-sensitive apps should prefer it. Subgraph is cheaper for UIs displaying many reserves with historical context.
 
 ---
 

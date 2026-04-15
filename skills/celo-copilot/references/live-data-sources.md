@@ -49,9 +49,9 @@ curl -s https://www.celopg.eco/programs
 
 The page lists all programs with status badges (Live/Past), dates, hosts, and funding amounts. Parse the HTML to get current state.
 
-**When to use**: Any question about grants, funding, or "what programs can I apply to?"
+**MANDATORY for any grant/program question.** The `grants-funding.md` cache goes stale the moment a program's status flips (e.g. a program listed as "Past" may actually be Live this quarter). Never answer an eligibility, status, reward, or deadline question from the cache alone — always fetch.
 
-**Key fields to look for**: Status (Live vs Past), funding amount, date range, host organization.
+**Key fields to extract**: status (Live vs Past), funding amount, date range, host organization, **eligibility requirements**, submission cadence (monthly/rolling/one-shot), submission deadlines.
 
 ---
 
