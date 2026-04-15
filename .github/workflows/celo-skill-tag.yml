@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'skills/celo-copilot/SKILL.md'
+      - 'skills/celo-skill/SKILL.md'
 
 jobs:
   tag:
@@ -18,8 +18,8 @@ jobs:
 
       - name: Extract version and create tag
         run: |
-          VERSION=$(grep '^version:' skills/celo-copilot/SKILL.md | head -1 | sed 's/version: *//')
-          TAG="celo-copilot-v${VERSION}"
+          VERSION=$(grep '^version:' skills/celo-skill/SKILL.md | head -1 | sed 's/version: *//')
+          TAG="celo-skill-v${VERSION}"
           echo "Detected version: ${VERSION}, tag: ${TAG}"
           if git rev-parse "${TAG}" >/dev/null 2>&1; then
             echo "Tag ${TAG} already exists, skipping."

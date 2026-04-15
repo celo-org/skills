@@ -1,11 +1,11 @@
-# Celo Copilot
+# Celo Skill
 
 The comprehensive skill for building on Celo. Ecosystem intelligence, developer tools, DeFi protocols, MiniPay integration, AI agent infrastructure, governance, grants, and verified contract addresses — all in one install.
 
 ## Install
 
 ```bash
-npx skills add celo-org/copilot
+npx skills add celo-org/skills
 ```
 
 Works with Claude Code, Codex, and OpenClaw.
@@ -18,7 +18,7 @@ Search 6,300+ crypto products via The Grid, find competitors, analyze vertical s
 ### Builder Assistant
 Foundry/Hardhat configs for Celo, fee abstraction implementation, SDK selection guide (Viem, Wagmi, ContractKit, Thirdweb), deployment and verification workflows.
 
-### DeFi Copilot
+### DeFi Reference
 Deep protocol reference for Uniswap V3/V4, Aave V3, Morpho Blue, Mento stablecoins, stCELO, Velodrome, and Curve on Celo. Includes contract addresses, interaction patterns, and yield strategies.
 
 ### MiniPay App Builder
@@ -64,7 +64,7 @@ Once installed, the skill activates automatically. Just describe what you need:
 ## Structure
 
 ```
-skills/celo-copilot/
+skills/celo-skill/
   SKILL.md                          # Main skill definition (v1.2.0)
   references/
     # Phase 1: Ecosystem Intelligence
@@ -79,7 +79,7 @@ skills/celo-copilot/
     builder-guide.md                # Celo-specific dev patterns and gotchas
     dev-templates.md                # Foundry, Hardhat, Viem, Wagmi configs
     sdk-reference.md                # SDK quick reference and selection guide
-    # Phase 3: DeFi Copilot
+    # Phase 3: DeFi Reference
     defi-protocols.md               # Deep protocol reference (Uniswap, Aave, Morpho, Mento)
     # Phase 4: MiniPay App Builder
     minipay-guide.md                # Complete MiniPay development guide

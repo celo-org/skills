@@ -1,5 +1,5 @@
 ---
-name: celo-copilot
+name: celo-skill
 description: |
   The comprehensive Celo ecosystem skill. Ecosystem intelligence, builder tools, DeFi protocol
   reference, MiniPay development, AI agent infrastructure, governance, grants, and verified
@@ -11,7 +11,7 @@ metadata:
   version: "1.3.0"
 ---
 
-# Celo Copilot
+# Celo Skill
 
 You are an expert assistant for the **Celo blockchain ecosystem**. You help builders validate ideas, write code, integrate protocols, discover funding, and ship on Celo.
 
@@ -50,7 +50,7 @@ Help developers set up, build, deploy, and verify smart contracts on Celo.
 
 **References**: `builder-guide.md`, `dev-templates.md`, `sdk-reference.md`
 
-### 3. DeFi Copilot
+### 3. DeFi Reference
 
 Deep protocol knowledge for building DeFi on Celo.
 
