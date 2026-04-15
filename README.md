@@ -63,35 +63,51 @@ Once installed, the skill activates automatically. Just describe what you need:
 
 ## Structure
 
-```
-skills/celo-skill/
-  SKILL.md                          # Main skill definition (v1.2.0)
-  references/
-    # Phase 1: Ecosystem Intelligence
-    network-info.md                 # Chain IDs, RPCs, explorers, fee currencies
-    contracts.md                    # 150+ verified contract addresses
-    ecosystem.md                    # 30+ DeFi protocols, infra, MiniPay apps
-    the-grid-skill.md               # 9 GraphQL query templates for The Grid
-    grants-funding.md               # 20+ grant programs (3 live, 17 past)
-    docs-map.md                     # Full docs.celo.org sitemap (~150 pages)
-    live-data-sources.md            # DefiLlama, celopg.eco, RPC, Blockscout APIs
-    # Phase 2: Builder Assistant
-    builder-guide.md                # Celo-specific dev patterns and gotchas
-    dev-templates.md                # Foundry, Hardhat, Viem, Wagmi configs
-    sdk-reference.md                # SDK quick reference and selection guide
-    # Phase 3: DeFi Reference
-    defi-protocols.md               # Deep protocol reference (Uniswap, Aave, Morpho, Mento)
-    # Phase 4: MiniPay App Builder
-    minipay-guide.md                # Complete MiniPay development guide
-    minipay-templates.md            # Ready-to-use Mini App code templates
-    minipay-scaffold-from-scratch.md # Raw Next.js + viem setup (alternative to Celo Composer)
-    odis-socialconnect.md           # ODIS (PnP), OdisPayments quota, FederatedAttestations, MiniPay issuer
-    minipay-live-apps.md            # Discovery snapshot: live Mini Apps, categories, country targeting
-    # Phase 5: Platform Features
-    governance.md                   # On-chain governance reference
-    ai-agents.md                    # ERC-8004, x402, MCP, Agent Skills
-    security-patterns.md            # Celo-specific security risks (pairs with pashov/skills)
-```
+The skill lives at `skills/celo-skill/` and is organized into topic-grouped references. `SKILL.md` is the main definition (v1.3.0); everything else is loaded on demand.
+
+### Ecosystem Intelligence
+
+| File | What |
+|------|------|
+| [`network-info.md`](skills/celo-skill/references/network-info.md) | Chain IDs, RPCs, explorers, fee currencies, RPC limits |
+| [`contracts.md`](skills/celo-skill/references/contracts.md) | 150+ verified contract addresses |
+| [`ecosystem.md`](skills/celo-skill/references/ecosystem.md) | 30+ DeFi protocols, infra, MiniPay apps |
+| [`the-grid-skill.md`](skills/celo-skill/references/the-grid-skill.md) | 9 GraphQL query templates for The Grid |
+| [`grants-funding.md`](skills/celo-skill/references/grants-funding.md) | Grant programs with mandatory live-fetch directive |
+| [`docs-map.md`](skills/celo-skill/references/docs-map.md) | Full `docs.celo.org` sitemap (~150 pages) |
+| [`live-data-sources.md`](skills/celo-skill/references/live-data-sources.md) | DefiLlama, celopg.eco, RPC, Blockscout APIs |
+
+### Builder Assistant
+
+| File | What |
+|------|------|
+| [`builder-guide.md`](skills/celo-skill/references/builder-guide.md) | Celo-specific dev patterns and gotchas |
+| [`dev-templates.md`](skills/celo-skill/references/dev-templates.md) | Foundry, Hardhat, Viem, Wagmi configs |
+| [`sdk-reference.md`](skills/celo-skill/references/sdk-reference.md) | SDK quick reference and selection guide |
+
+### DeFi
+
+| File | What |
+|------|------|
+| [`defi-protocols.md`](skills/celo-skill/references/defi-protocols.md) | Deep protocol reference (Uniswap, Aave, Morpho, Mento) with live APY fetching |
+
+### MiniPay App Builder
+
+| File | What |
+|------|------|
+| [`minipay-guide.md`](skills/celo-skill/references/minipay-guide.md) | Complete MiniPay development guide |
+| [`minipay-templates.md`](skills/celo-skill/references/minipay-templates.md) | Ready-to-use Mini App code templates |
+| [`minipay-scaffold-from-scratch.md`](skills/celo-skill/references/minipay-scaffold-from-scratch.md) | Raw Next.js + viem setup (alternative to Celo Composer) |
+| [`odis-socialconnect.md`](skills/celo-skill/references/odis-socialconnect.md) | ODIS (PnP), OdisPayments, FederatedAttestations |
+| [`minipay-live-apps.md`](skills/celo-skill/references/minipay-live-apps.md) | Discovery snapshot: live Mini Apps, categories, country targeting |
+
+### Platform Features
+
+| File | What |
+|------|------|
+| [`governance.md`](skills/celo-skill/references/governance.md) | On-chain governance reference |
+| [`ai-agents.md`](skills/celo-skill/references/ai-agents.md) | ERC-8004, x402, MCP, Agent Skills |
+| [`security-patterns.md`](skills/celo-skill/references/security-patterns.md) | Celo-specific security risks (pairs with [pashov/skills](https://github.com/pashov/skills)) |
 
 ## Contributing
 
