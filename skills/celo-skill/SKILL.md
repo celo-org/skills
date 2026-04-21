@@ -8,7 +8,7 @@ homepage: https://celo.org
 license: Apache-2.0
 metadata:
   author: celo-org
-  version: "1.3.0"
+  version: "1.4.0"
 ---
 
 # Celo Skill
@@ -76,8 +76,9 @@ Build Mini Apps for MiniPay — Celo's stablecoin wallet with 14M+ users.
 - Ready-to-use templates: payment flow, bill payment, balance display
 - Scaffold options: **Celo Composer** (batteries-included) or **raw Next.js** (see `minipay-scaffold-from-scratch.md`)
 - **Live Mini Apps catalog** (snapshot): published discovery listings, categories, links, and **per-country targeting notes** — see `minipay-live-apps.md` (availability varies by market; not a live API)
+- **Official submission requirements** (UI copy rules, 360×640, PageSpeed, ToS/Privacy, 24h SLA, etc.): `minipay-requirements.md` — treat as the listing checklist before shipping
 
-**References**: `minipay-guide.md`, `minipay-templates.md`, `minipay-scaffold-from-scratch.md`, `odis-socialconnect.md`, `minipay-live-apps.md`
+**References**: `minipay-guide.md`, `minipay-templates.md`, `minipay-scaffold-from-scratch.md`, `odis-socialconnect.md`, `minipay-live-apps.md`, `minipay-requirements.md`
 
 ### 5. AI Agent Builder
 
@@ -152,6 +153,7 @@ Chain IDs, RPCs, explorers, faucets, RPC limits (`eth_getLogs` block range), and
 | Protocol integration | Check `defi-protocols.md` |
 | Build / deploy / verify | Check `builder-guide.md`, `dev-templates.md` |
 | MiniPay development | Check `minipay-guide.md`, `minipay-templates.md` |
+| MiniPay submission / listing readiness | Check `minipay-requirements.md` |
 | What Mini Apps are live / discovery ideas | Check `minipay-live-apps.md` (snapshot; country availability varies) |
 | ODIS / phone lookup / SocialConnect | Check `odis-socialconnect.md`, `minipay-guide.md`, `contracts.md` |
 | AI agent building | Check `ai-agents.md` |
@@ -211,3 +213,12 @@ When a builder has a new idea, guide them through:
 6. **Filter for EVM.** Exclude non-EVM results unless asked.
 7. **Data freshness.** Reference files = snapshots. For live TVL, link to DefiLlama. For current contracts, link to docs.celo.org.
 8. **MiniPay constraints.** No emulators, no message signing, legacy tx only, fee abstraction via USDm.
+9. **MiniPay UI copy rules (enforced).** When reviewing or generating MiniPay Mini App code, **flag and suggest corrections** whenever these banned terms appear in user-facing strings, button labels, tooltips, or error messages:
+   - "Gas" / "Gas fee" → **Network fee**
+   - "Onramp" / "Buy crypto" → **Deposit**
+   - "Offramp" / "Sell crypto" → **Withdraw**
+   - "Crypto" / "Crypto token" → **Stablecoin** or **Digital dollar**
+   - Raw `0x…` addresses as primary user identifier → phone number or alias
+
+   Code identifiers and RPC method names (`gasEstimate`, `eth_gasPrice`, `feeCurrency`) are technical and should stay unchanged. See `minipay-requirements.md` §3.
+10. **MiniPay token scope.** Only USDT / USDC / USDm. **Never display or require CELO** in Mini Apps — MiniPay hides it from users and handles fees via fee abstraction.

@@ -192,19 +192,19 @@ const txHash = await walletClient.sendTransaction({
   account: address,
   to: USDM_ADDRESS,
   data,
-  // Pay gas with USDm (fee abstraction)
+  // Pay network fee with USDm (fee abstraction)
   feeCurrency: USDM_ADDRESS,
 });
 ```
 
 ---
 
-## Gas Estimation with Fee Currency
+## Network Fee Estimation with Fee Currency
 
-MiniPay users pay gas in stablecoins. Estimate gas cost in USDm:
+MiniPay users pay the network fee in stablecoins. Estimate the network fee in USDm:
 
 ```typescript
-// Estimate gas units
+// Estimate gas units (internal — UI copy should say "network fee")
 const gasEstimate = await publicClient.estimateGas({
   account: address,
   to: USDM_ADDRESS,
@@ -212,7 +212,7 @@ const gasEstimate = await publicClient.estimateGas({
   feeCurrency: USDM_ADDRESS,
 });
 
-// Get gas price in USDm
+// Get gas price in USDm (per-unit fee rate)
 const gasPrice = await publicClient.request({
   method: "eth_gasPrice",
   params: [USDM_ADDRESS], // Pass fee currency address
@@ -276,13 +276,27 @@ const { accounts } = await federated.lookupAttestations(obfuscatedIdentifier, [
 
 See **`references/odis-socialconnect.md`** for troubleshooting, **DEK (`ENCRYPTION_KEY`)** auth, viem alternatives, and doc links.
 
+### UI rule: never display raw addresses
+
+MiniPay requires that apps identify users by **phone number**, not `0x…` hex addresses. When you need to show "who paid you" or "send to", prefer in order:
+
+1. The phone number resolved via FederatedAttestations (when available).
+2. An app-specific alias / username the user has set.
+3. A truncated `0x123…abc` only as a secondary hint — never as the primary identifier.
+
+This is part of MiniPay's submission requirements — see `minipay-requirements.md` §1.
+
 ---
 
 ## Deeplinks
 
 | Deeplink | URL | Purpose |
 |----------|-----|---------|
-| Add Cash | `https://minipay.opera.com/add_cash` | Open add cash screen |
+| Deposit (Add Cash) | `https://minipay.opera.com/add_cash` | Redirect users with low balance to top up |
+
+> **Canonical list:** `https://docs.minipay.xyz/technical-references/deeplinks.html#available-deeplinks` — fetch before shipping; MiniPay publishes new deeplinks periodically.
+>
+> **UI copy:** label this action **Deposit** in buttons/messages — not "Add Cash", "Onramp", or "Buy". See `minipay-requirements.md` §3.
 
 ---
 
@@ -330,10 +344,12 @@ The ngrok dashboard at `http://localhost:4040` shows all requests for debugging.
 
 1. **No emulators** — MiniPay requires a physical device
 2. **Legacy transactions only** — MiniPay ignores EIP-1559 fields. Do not set `maxFeePerGas` / `maxPriorityFeePerGas`
-3. **Fee abstraction** — MiniPay pays gas with USDm by default. Use `feeCurrency` parameter
+3. **Fee abstraction** — MiniPay pays the network fee with USDm by default. Use the `feeCurrency` parameter
 4. **No message signing** — `personal_sign` and `eth_signTypedData` are not supported
 5. **Small screens** — Design for mobile-first, low-bandwidth environments
 6. **2MB footprint** — Keep Mini App bundle size small
+7. **No CELO in UI** — MiniPay hides CELO from users. Your app must only display and accept USDT / USDC / USDm; fee abstraction handles the network fee in stablecoins automatically
+8. **Submission checklist** — before listing, review `minipay-requirements.md` for the 7-section official checklist (copy rules, 360×640, PageSpeed, ToS / Privacy, 24h SLA)
 
 ---
 
@@ -342,10 +358,17 @@ The ngrok dashboard at `http://localhost:4040` shows all requests for debugging.
 - Display amounts in local currency when possible (use Mento local stablecoins)
 - Minimize data usage — lazy load images, compress assets
 - Design for small screens (most users are on budget Android phones)
+- **Test at 360 × 640** — the minimum MiniPay WebView resolution. Use Chrome DevTools device mode to validate before submission
+- **Use SVG or WebP for images** — avoid PNG/JPG for anything larger than a few KB
 - Show clear transaction confirmations with USD equivalents
 - Handle network errors gracefully (intermittent connectivity is common)
 - Keep flows short — minimize steps to complete an action
 - Support offline-capable patterns where possible
+- **Show your app identity** — display your name and logo so users understand the service is operated by you, not by MiniPay
+- **In-app support link** — Telegram, WhatsApp, email, or web portal, reachable from any screen
+- **Link to ToS + Privacy Policy** from inside the app (footer or settings) — required for listing
+
+See `minipay-requirements.md` for the full submission checklist.
 
 ---
 

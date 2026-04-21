@@ -11,6 +11,7 @@ Ready-to-use code for common Mini App patterns.
 | 3 | Stablecoin Payment Flow | Pay-with-stablecoin UX (approve + transfer + feeCurrency) | `components/PayButton.tsx` |
 | 4 | Bill Payment Pattern | Recurring / bill-style payment component | `components/BillPayment.tsx` |
 | 5 | Multi-Token Balance Display | Show USDm/USDC/USDT balances with correct decimals | `components/Balances.tsx` |
+| 6 | Preferred Stablecoin Selection | Pick the user's highest-balance stablecoin (+ low-balance deeplink + graceful degradation) | `lib/stablecoins.ts` |
 
 Each template is standalone and copy-paste ready. USDC/USDT `feeCurrency` uses adapter addresses — see `builder-guide.md` → _Allowed Fee Currencies (Mainnet)_.
 
@@ -32,7 +33,7 @@ const USDM_ADDRESS = "0x765DE816845861e75A25fCA122bb6898B8B1282a" as const;
 const USDC_ADDRESS = "0xcebA9300f2b948710d2653dD7B07f33A8B32118C" as const;
 const USDT_ADDRESS = "0x48065fbBE25f71C9282ddf5e1cD6D6A887483D5e" as const;
 
-// feeCurrency addresses — use ONLY in the `feeCurrency` transaction field (pay gas in stablecoin).
+// feeCurrency addresses — use ONLY in the `feeCurrency` transaction field (pay network fee in stablecoin).
 // USDm is 18-decimal so token==adapter. USDC/USDT are 6-decimal and require adapter contracts —
 // passing the token address in `feeCurrency` will make the transaction fail.
 // Canonical table: builder-guide.md → Allowed Fee Currencies (Mainnet).
@@ -265,7 +266,7 @@ async function sendPayment(
     args: [recipientAddress, amount],
   });
 
-  // Send with fee abstraction (gas paid in USDm)
+  // Send with fee abstraction (network fee paid in USDm)
   const txHash = await walletClient.sendTransaction({
     account: senderAddress,
     to: USDM_ADDRESS,
@@ -385,7 +386,7 @@ _Drop this into: `components/Balances.tsx`_
 import { createPublicClient, http, formatUnits } from "viem";
 import { celo } from "viem/chains";
 
-// Token addresses for balance reads. For `feeCurrency` gas payments,
+// Token addresses for balance reads. For `feeCurrency` (network fee) payments,
 // USDC/USDT need their adapter addresses instead — see builder-guide.md.
 const TOKENS = [
   { symbol: "USDm", address: "0x765DE816845861e75A25fCA122bb6898B8B1282a", decimals: 18 },
@@ -422,5 +423,94 @@ async function getAllBalances(userAddress: `0x${string}`) {
   );
 
   return balances;
+}
+```
+
+---
+
+## 6. Preferred Stablecoin Selection (dynamic adaptation)
+
+_Drop this into: `lib/stablecoins.ts`_
+
+MiniPay requires apps to adapt to the user's preferred stablecoin — the one they hold the most of. Use this helper before any payment flow.
+
+```ts
+import { createPublicClient, http, erc20Abi, formatUnits } from "viem";
+import { celo } from "viem/chains";
+
+const STABLES = [
+  { symbol: "USDm", address: "0x765DE816845861e75A25fCA122bb6898B8B1282a", decimals: 18 },
+  { symbol: "USDC", address: "0xcebA9300f2b948710d2653dD7B07f33A8B32118C", decimals: 6  },
+  { symbol: "USDT", address: "0x48065fbBE25f71C9282ddf5e1cD6D6A887483D5e", decimals: 6  },
+] as const;
+
+export type Preferred = {
+  symbol: string;
+  address: `0x${string}`;
+  decimals: number;
+  balance: bigint;
+  human: number;
+};
+
+export async function getPreferredStablecoin(
+  user: `0x${string}`
+): Promise<Preferred | null> {
+  const client = createPublicClient({ chain: celo, transport: http() });
+  const balances = await Promise.all(
+    STABLES.map(async (t) => {
+      const raw = await client.readContract({
+        address: t.address as `0x${string}`,
+        abi: erc20Abi,
+        functionName: "balanceOf",
+        args: [user],
+      });
+      return {
+        ...t,
+        balance: raw,
+        human: Number(formatUnits(raw, t.decimals)),
+      };
+    })
+  );
+  const withFunds = balances.filter((b) => b.balance > 0n);
+  if (withFunds.length === 0) return null; // trigger low-balance deeplink
+  withFunds.sort((a, b) => b.human - a.human);
+  return withFunds[0] as Preferred;
+}
+```
+
+### Pair with the low-balance deeplink
+
+When the user has zero balance in all three tokens, redirect to MiniPay's Deposit view rather than showing an error:
+
+```ts
+import { getPreferredStablecoin } from "@/lib/stablecoins";
+
+async function startPayment(userAddress: `0x${string}`) {
+  const preferred = await getPreferredStablecoin(userAddress);
+  if (!preferred) {
+    // Low balance — redirect to MiniPay Deposit (see minipay-requirements.md §6)
+    window.location.href = "https://minipay.opera.com/add_cash";
+    return;
+  }
+  // Proceed with preferred.address + preferred.decimals as the charge token.
+}
+```
+
+### Graceful degradation — single-token apps
+
+If your app only supports one stablecoin, show a clear explainer instead of a broken UI (required by MiniPay submission rules):
+
+```tsx
+export function SingleTokenNotice() {
+  return (
+    <div className="rounded-md border p-3 text-sm">
+      This app accepts <strong>USDC</strong> only. If your MiniPay balance is
+      in USDm or USDT, tap{" "}
+      <a href="https://minipay.opera.com/add_cash" className="underline">
+        Deposit in MiniPay
+      </a>{" "}
+      to swap or top up first.
+    </div>
+  );
 }
 ```

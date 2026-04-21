@@ -22,7 +22,7 @@ Foundry/Hardhat configs for Celo, fee abstraction implementation, SDK selection 
 Deep protocol reference for Uniswap V3/V4, Aave V3, Morpho Blue, Mento stablecoins, stCELO, Velodrome, and Curve on Celo. Includes contract addresses, interaction patterns, and yield strategies.
 
 ### MiniPay App Builder
-Build Mini Apps for MiniPay (14M+ wallets). Wallet detection, auto-connect patterns, stablecoin payments, phone number resolution, testing with ngrok, and ready-to-use code templates.
+Build Mini Apps for MiniPay (14M+ wallets). Wallet detection, auto-connect patterns, stablecoin payments, phone number resolution, testing with ngrok, and ready-to-use code templates. Includes the official submission checklist (UI copy rules, 360×640, PageSpeed, ToS/Privacy, 24h SLA).
 
 ### AI Agent Builder
 ERC-8004 (Agent Trust Protocol), x402 (HTTP micropayments), Celo MCP Server, and the Agent Skills specification. Build AI agents that transact autonomously on Celo.
@@ -100,6 +100,7 @@ The skill lives at `skills/celo-skill/` and is organized into topic-grouped refe
 | [`minipay-scaffold-from-scratch.md`](skills/celo-skill/references/minipay-scaffold-from-scratch.md) | Raw Next.js + viem setup (alternative to Celo Composer) |
 | [`odis-socialconnect.md`](skills/celo-skill/references/odis-socialconnect.md) | ODIS (PnP), OdisPayments, FederatedAttestations |
 | [`minipay-live-apps.md`](skills/celo-skill/references/minipay-live-apps.md) | Discovery snapshot: live Mini Apps, categories, country targeting |
+| [`minipay-requirements.md`](skills/celo-skill/references/minipay-requirements.md) | Official submission checklist: UI copy rules, performance, legal, 24h SLA |
 
 ### Platform Features
 
