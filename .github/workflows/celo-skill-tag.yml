@@ -18,7 +18,11 @@ jobs:
 
       - name: Extract version and create tag
         run: |
-          VERSION=$(grep '^version:' skills/celo-skill/SKILL.md | head -1 | sed 's/version: *//')
+          VERSION=$(grep -E '^[[:space:]]*version:' skills/celo-skill/SKILL.md | head -1 | sed -E 's/^[[:space:]]*version:[[:space:]]*//; s/^"(.*)"$/\1/; s/^'"'"'(.*)'"'"'$/\1/')
+          if [ -z "${VERSION}" ]; then
+            echo "Could not extract version from skills/celo-skill/SKILL.md"
+            exit 1
+          fi
           TAG="celo-skill-v${VERSION}"
           echo "Detected version: ${VERSION}, tag: ${TAG}"
           if git rev-parse "${TAG}" >/dev/null 2>&1; then
