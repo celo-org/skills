@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Regenerate skills/celo-skill/references/minipay-live-apps.md from a discovery export CSV."""
+"""Regenerate skills/celopedia-skill/references/minipay-live-apps.md from a discovery export CSV."""
 
 from __future__ import annotations
 
@@ -20,7 +20,7 @@ def main() -> None:
 
     csv_path = Path(sys.argv[1]).resolve()
     repo_root = Path(__file__).resolve().parents[1]
-    out = repo_root / "skills/celo-skill/references/minipay-live-apps.md"
+    out = repo_root / "skills/celopedia-skill/references/minipay-live-apps.md"
 
     rows = []
     with csv_path.open(newline="", encoding="utf-8") as f:

@@ -1,11 +1,11 @@
-# Celo Skill
+# Celopedia Skill
 
 The comprehensive skill for building on Celo. Ecosystem intelligence, developer tools, DeFi protocols, MiniPay integration, AI agent infrastructure, governance, grants, and verified contract addresses — all in one install.
 
 ## Install
 
 ```bash
-npx skills add celo-org/skills
+npx skills add celo-org/celopedia-skills
 ```
 
 Works with Claude Code, Codex, and OpenClaw.
@@ -63,52 +63,52 @@ Once installed, the skill activates automatically. Just describe what you need:
 
 ## Structure
 
-The skill lives at `skills/celo-skill/` and is organized into topic-grouped references. `SKILL.md` is the main definition (v1.3.0); everything else is loaded on demand.
+The skill lives at `skills/celopedia-skill/` and is organized into topic-grouped references. `SKILL.md` is the main definition (v2.0.0); everything else is loaded on demand.
 
 ### Ecosystem Intelligence
 
 | File | What |
 |------|------|
-| [`network-info.md`](skills/celo-skill/references/network-info.md) | Chain IDs, RPCs, explorers, fee currencies, RPC limits |
-| [`contracts.md`](skills/celo-skill/references/contracts.md) | 150+ verified contract addresses |
-| [`ecosystem.md`](skills/celo-skill/references/ecosystem.md) | 30+ DeFi protocols, infra, MiniPay apps |
-| [`the-grid-skill.md`](skills/celo-skill/references/the-grid-skill.md) | 9 GraphQL query templates for The Grid |
-| [`grants-funding.md`](skills/celo-skill/references/grants-funding.md) | Grant programs with mandatory live-fetch directive |
-| [`docs-map.md`](skills/celo-skill/references/docs-map.md) | Full `docs.celo.org` sitemap (~150 pages) |
-| [`live-data-sources.md`](skills/celo-skill/references/live-data-sources.md) | DefiLlama, celopg.eco, RPC, Blockscout APIs |
+| [`network-info.md`](skills/celopedia-skill/references/network-info.md) | Chain IDs, RPCs, explorers, fee currencies, RPC limits |
+| [`contracts.md`](skills/celopedia-skill/references/contracts.md) | 150+ verified contract addresses |
+| [`ecosystem.md`](skills/celopedia-skill/references/ecosystem.md) | 30+ DeFi protocols, infra, MiniPay apps |
+| [`the-grid-skill.md`](skills/celopedia-skill/references/the-grid-skill.md) | 9 GraphQL query templates for The Grid |
+| [`grants-funding.md`](skills/celopedia-skill/references/grants-funding.md) | Grant programs with mandatory live-fetch directive |
+| [`docs-map.md`](skills/celopedia-skill/references/docs-map.md) | Full `docs.celo.org` sitemap (~150 pages) |
+| [`live-data-sources.md`](skills/celopedia-skill/references/live-data-sources.md) | DefiLlama, celopg.eco, RPC, Blockscout APIs |
 
 ### Builder Assistant
 
 | File | What |
 |------|------|
-| [`builder-guide.md`](skills/celo-skill/references/builder-guide.md) | Celo-specific dev patterns and gotchas |
-| [`dev-templates.md`](skills/celo-skill/references/dev-templates.md) | Foundry, Hardhat, Viem, Wagmi configs |
-| [`sdk-reference.md`](skills/celo-skill/references/sdk-reference.md) | SDK quick reference and selection guide |
+| [`builder-guide.md`](skills/celopedia-skill/references/builder-guide.md) | Celo-specific dev patterns and gotchas |
+| [`dev-templates.md`](skills/celopedia-skill/references/dev-templates.md) | Foundry, Hardhat, Viem, Wagmi configs |
+| [`sdk-reference.md`](skills/celopedia-skill/references/sdk-reference.md) | SDK quick reference and selection guide |
 
 ### DeFi
 
 | File | What |
 |------|------|
-| [`defi-protocols.md`](skills/celo-skill/references/defi-protocols.md) | Deep protocol reference (Uniswap, Aave, Morpho, Mento) with live APY fetching |
+| [`defi-protocols.md`](skills/celopedia-skill/references/defi-protocols.md) | Deep protocol reference (Uniswap, Aave, Morpho, Mento) with live APY fetching |
 
 ### MiniPay App Builder
 
 | File | What |
 |------|------|
-| [`minipay-guide.md`](skills/celo-skill/references/minipay-guide.md) | Complete MiniPay development guide |
-| [`minipay-templates.md`](skills/celo-skill/references/minipay-templates.md) | Ready-to-use Mini App code templates |
-| [`minipay-scaffold-from-scratch.md`](skills/celo-skill/references/minipay-scaffold-from-scratch.md) | Raw Next.js + viem setup (alternative to Celo Composer) |
-| [`odis-socialconnect.md`](skills/celo-skill/references/odis-socialconnect.md) | ODIS (PnP), OdisPayments, FederatedAttestations |
-| [`minipay-live-apps.md`](skills/celo-skill/references/minipay-live-apps.md) | Discovery snapshot: live Mini Apps, categories, country targeting |
-| [`minipay-requirements.md`](skills/celo-skill/references/minipay-requirements.md) | Official submission checklist: UI copy rules, performance, legal, 24h SLA |
+| [`minipay-guide.md`](skills/celopedia-skill/references/minipay-guide.md) | Complete MiniPay development guide |
+| [`minipay-templates.md`](skills/celopedia-skill/references/minipay-templates.md) | Ready-to-use Mini App code templates |
+| [`minipay-scaffold-from-scratch.md`](skills/celopedia-skill/references/minipay-scaffold-from-scratch.md) | Raw Next.js + viem setup (alternative to Celo Composer) |
+| [`odis-socialconnect.md`](skills/celopedia-skill/references/odis-socialconnect.md) | ODIS (PnP), OdisPayments, FederatedAttestations |
+| [`minipay-live-apps.md`](skills/celopedia-skill/references/minipay-live-apps.md) | Discovery snapshot: live Mini Apps, categories, country targeting |
+| [`minipay-requirements.md`](skills/celopedia-skill/references/minipay-requirements.md) | Official submission checklist: UI copy rules, performance, legal, 24h SLA |
 
 ### Platform Features
 
 | File | What |
 |------|------|
-| [`governance.md`](skills/celo-skill/references/governance.md) | On-chain governance reference |
-| [`ai-agents.md`](skills/celo-skill/references/ai-agents.md) | ERC-8004, x402, MCP, Agent Skills |
-| [`security-patterns.md`](skills/celo-skill/references/security-patterns.md) | Celo-specific security risks (pairs with [pashov/skills](https://github.com/pashov/skills)) |
+| [`governance.md`](skills/celopedia-skill/references/governance.md) | On-chain governance reference |
+| [`ai-agents.md`](skills/celopedia-skill/references/ai-agents.md) | ERC-8004, x402, MCP, Agent Skills |
+| [`security-patterns.md`](skills/celopedia-skill/references/security-patterns.md) | Celo-specific security risks (pairs with [pashov/skills](https://github.com/pashov/skills)) |
 
 ## Contributing
 

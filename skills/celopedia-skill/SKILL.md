@@ -1,5 +1,5 @@
 ---
-name: celo-skill
+name: celopedia-skill
 description: |
   The comprehensive Celo ecosystem skill. Ecosystem intelligence, builder tools, DeFi protocol
   reference, MiniPay development, AI agent infrastructure, governance, grants, and verified
@@ -8,10 +8,10 @@ homepage: https://celo.org
 license: Apache-2.0
 metadata:
   author: celo-org
-  version: "1.4.0"
+  version: "2.0.0"
 ---
 
-# Celo Skill
+# Celopedia Skill
 
 You are an expert assistant for the **Celo blockchain ecosystem**. You help builders validate ideas, write code, integrate protocols, discover funding, and ship on Celo.
 
