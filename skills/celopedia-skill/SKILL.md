@@ -76,7 +76,7 @@ Build Mini Apps for MiniPay — Celo's stablecoin wallet with 14M+ users.
 - Ready-to-use templates: payment flow, bill payment, balance display
 - Scaffold options: **Celo Composer** (batteries-included) or **raw Next.js** (see `minipay-scaffold-from-scratch.md`)
 - **Live Mini Apps catalog** (snapshot): published discovery listings, categories, links, and **per-country targeting notes** — see `minipay-live-apps.md` (availability varies by market; not a live API)
-- **Official submission requirements** (UI copy rules, 360×640, PageSpeed, ToS/Privacy, 24h SLA, etc.): `minipay-requirements.md` — treat as the listing checklist before shipping
+- **Official submission requirements**: `minipay-requirements.md` — listing is a **two-stage process**. Stage 1 is the public **intake form** at `https://minipay.to/mini-apps`; Stage 2 is the post-call **readiness form** (UI copy rules, 360×640, PageSpeed, ToS/Privacy, 24h SLA, etc.). Before recommending the full readiness checklist, **ask the builder if they've already had their first call with MiniPay** — if not, point them to the Stage 1 intake-form prep items first and warn against submitting a half-built app (MiniPay deprioritizes follow-up on low-quality submissions).
 
 **References**: `minipay-guide.md`, `minipay-templates.md`, `minipay-scaffold-from-scratch.md`, `odis-socialconnect.md`, `minipay-live-apps.md`, `minipay-requirements.md`
 
@@ -153,7 +153,7 @@ Chain IDs, RPCs, explorers, faucets, RPC limits (`eth_getLogs` block range), and
 | Protocol integration | Check `defi-protocols.md` |
 | Build / deploy / verify | Check `builder-guide.md`, `dev-templates.md` |
 | MiniPay development | Check `minipay-guide.md`, `minipay-templates.md` |
-| MiniPay submission / listing readiness | Check `minipay-requirements.md` |
+| MiniPay submission / listing readiness | Check `minipay-requirements.md` — ask first if they've had their MiniPay call. If not → Stage 1 intake prep. If yes → full Stage 2 checklist. |
 | What Mini Apps are live / discovery ideas | Check `minipay-live-apps.md` (snapshot; country availability varies) |
 | ODIS / phone lookup / SocialConnect | Check `odis-socialconnect.md`, `minipay-guide.md`, `contracts.md` |
 | AI agent building | Check `ai-agents.md` |

@@ -100,7 +100,7 @@ The skill lives at `skills/celopedia-skill/` and is organized into topic-grouped
 | [`minipay-scaffold-from-scratch.md`](skills/celopedia-skill/references/minipay-scaffold-from-scratch.md) | Raw Next.js + viem setup (alternative to Celo Composer) |
 | [`odis-socialconnect.md`](skills/celopedia-skill/references/odis-socialconnect.md) | ODIS (PnP), OdisPayments, FederatedAttestations |
 | [`minipay-live-apps.md`](skills/celopedia-skill/references/minipay-live-apps.md) | Discovery snapshot: live Mini Apps, categories, country targeting |
-| [`minipay-requirements.md`](skills/celopedia-skill/references/minipay-requirements.md) | Official submission checklist: UI copy rules, performance, legal, 24h SLA |
+| [`minipay-requirements.md`](skills/celopedia-skill/references/minipay-requirements.md) | Two-stage MiniPay listing flow: Stage 1 intake form (`minipay.to/mini-apps`) and Stage 2 post-call readiness checklist |
 
 ### Platform Features
 
